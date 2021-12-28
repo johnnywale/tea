@@ -1,0 +1,65 @@
+<div class="col-md-8 col-lg-10 pl-xl-5">
+    <div class="list-products2 mt-2">
+        <div class="list-products-header d-flex justify-content-md-end">
+            <div class="dropdown">
+
+                {%- assign sort_by = collection.sort_by | default: collection.default_sort_by -%}
+
+                <a class="btn dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
+                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+
+
+                    {%- for option in collection.sort_options -%}
+
+
+                        {%- if option.value == sort_by -%}
+                            {{ option.name | escape }}
+                        {%- endif -%}
+                    {%- endfor -%}
+
+
+                </a>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                    {%- for option in collection.sort_options -%}
+                        <a class="dropdown-item" value="{{ option.value | escape }}"
+                           href="javascript:void(-1)">{{ option.name | escape }}</a>
+                    {%- endfor -%}
+                </div>
+            </div>
+        </div>
+
+        <div class="list-products-body">
+            <div class="list-index-products">
+
+                {%- for product in collection.products -%}
+                    <div class="item">
+                        <div class="img-holder">
+                            <a href="{{ product.url }}"
+                               style="background-image:url({{ product.featured_media | img_url: '1500x' }});"></a>
+                            <ul class="add-on-tools">
+                                <li><a href="javascript:void(0)"><i class="material-icons-outlined">
+                                            favorite_border </i></a></li>
+                                <li class="product_quick_view" data-entity-id="{{ product.id }}"><a
+                                            href="javascript:void(0)"><i class="material-icons">
+                                            search </i></a></li>
+                            </ul>
+                        </div>
+                        <div class="caption-holder">
+                            <div class="prod-category">{{ product.type }}</div>
+                            <div class="prod-title">
+                                <a href="{{ product.url }}">{{ product.title }}</a>
+                            </div>
+                            <div class="prod-price">
+                                {% render 'price', product: product %}
+                            </div>
+                            <div class="btn-select-options">
+                                <a href="{{ product.url }}" class="btn btn-site sec btn-block">Select
+                                    Options</a>
+                            </div>
+                        </div>
+                    </div>
+                {%- endfor -%}
+            </div>
+        </div>
+    </div>
+</div>

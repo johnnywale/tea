@@ -1,26 +1,123 @@
-{{ 'component-article-card.css' | asset_url | stylesheet_tag }}
-{{ 'component-card.css' | asset_url | stylesheet_tag }}
-{{ 'section-main-blog.css' | asset_url | stylesheet_tag }}
-
-
-{%- paginate blog.articles by 6 -%}
-
-  <div class="main-blog page-width">
-    <h1 class="title--primary">{{ blog.title | escape }}</h1>
-
-    <div class="blog-articles {% if section.settings.layout == 'collage' %}blog-articles--collage{% endif %}">
-      {%- for article in blog.articles -%}
-        <div class="blog-articles__article article">
-          {%- render 'article-card', article: article, image_height: section.settings.image_height, show_image: section.settings.show_image, show_date: section.settings.show_date, show_author: section.settings.show_author -%}
-        </div>
-      {%- endfor -%}
-    </div>
-
-    {%- if paginate.pages > 1 -%}
-      {%- render 'pagination', paginate: paginate -%}
-    {%- endif -%}
+<section class="has-bg p-0 d-flex main-hero" style="background-image: url(https://www.24k.com.sg/workz/johnny/mist-valley-shop/v2/images/hero-contact-us.jpg);">
+  <div class="caption-holder">
+    <h2>Blog</h2>
   </div>
-{%- endpaginate -%}
+</section>
+<section class="subpage pb-0">
+  <figure class="subsection">
+    <div class="container">
+      <div class="section-body">
+        <div class="row list-blog">
+        {%- for article in blog.articles -%}
+              {%- render 'article-card', article: article, image_height: section.settings.image_height, show_image: section.settings.show_image, show_date: section.settings.show_date, show_author: section.settings.show_author -%}
+          {%- endfor -%}
+        </div>
+
+        <div class="pagi-nav justify-content-center d-flex flex-nowrap mt-5">
+          <span class="navi"><a href="javascript:void(0)" title=""><i class="fa fa-angle-left"></i></a></span>
+          <span class="page current"><a href="javascript:void(0)" title="">1</a></span>
+          <span class="page"><a href="javascript:void(0)" title="">2</a></span>
+          <span class="page"><a href="javascript:void(0)" title="">3</a></span>
+          <span class="navi"><a href="javascript:void(0)" title=""><i class="fa fa-angle-right"></i></a></span>
+        </div>
+      </div>
+    </div>
+  </figure>
+  <figure class="subsection mainsec-subscribe pt-0">
+    <div class="container">
+      <div class="section-body">
+        <div class="subscribe-box">
+          <div class="img-holder" style="background-image: url(https://www.24k.com.sg/workz/johnny/mist-valley-shop/v2/images/bg-subscribe-box.jpg);"></div>
+          <div class="caption-holder">
+            <h2 class="mb-2">Subscribe Our Newsletter</h2>
+            <p>Sign up for our newsletter</p>
+            <form action="" class="form-subscribe">
+              <div class="input-group mb-3">
+                <input type="email" class="form-control" placeholder="Email Address" aria-label="Email Address" aria-describedby="button-addon2">
+                <div class="input-group-append">
+                  <button class="btn btn-site" type="button" id="button-addon2">SIGNUP</button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </figure>
+  <figure class="subsection has-parallax has-bg mb-0" style="background-image: url(https://www.24k.com.sg/workz/johnny/mist-valley-shop/v2/images/bg-footer-parallax-1.jpg);"></figure>
+</section>
+<!-- end section -->
+<!-- QuickView Modal -->
+<div class="modal fade" id="quickview" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-content">
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-md-5">
+            <div id="sync1" class="owl-carousel owl-theme">
+              <div class="item">
+                <img src="images/products/classic_breakfast-2.png" alt="">
+              </div>
+              <div class="item">
+                <img src="images/products/classic_breakfast-4.png" alt="">
+              </div>
+              <div class="item">
+                <img src="images/products/classic_breakfast-5.png" alt="">
+              </div>
+            </div>
+            <div id="sync2" class="owl-carousel owl-theme">
+              <div class="item">
+                <img src="images/products/classic_breakfast-2.png" alt="">
+              </div>
+              <div class="item">
+                <img src="images/products/classic_breakfast-4.png" alt="">
+              </div>
+              <div class="item">
+                <img src="images/products/classic_breakfast-5.png" alt="">
+              </div>
+            </div>
+          </div>
+          <div class="col-md-7">
+            <div class="product-detail-overview mt-5">
+              <div class="prod-category">Regular Teas</div>
+              <h1 class="prod-title">Classic Breakfast</h1>
+              <div class="prod-price"><span>$</span>18.00</div>
+              <p class="highlights">One of the most popular teas in British culture, the original English Breakfast tea was a blend of Ceylon (Sri Lanka) and Indian Assam black teas. </p>
+              <p class="desc">
+                Building on this long and respected heritage, Mist Valley’s tea masters have crafted a Classic English Breakfast tea that is the perfect morning cup to awaken the senses. The rich, bold and full-bodied Ceylon tea boasts a malty aftertaste and finishes with a hint of tannin that is balanced by the flavourful Assam with its sweet and nutty aroma.
+              </p>
+            </div>
+            <div class="product-detail-purchase-options">
+              <div class="label">Size</div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadioOptions1" value="100gm">
+                <label class="form-check-label" for="inlineRadioOptions1">100gm</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadioOptions2" value="200gm">
+                <label class="form-check-label" for="inlineRadioOptions2">200gm</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadioOptions3" value="300gm">
+                <label class="form-check-label" for="inlineRadioOptions3">300gm</label>
+              </div>
+            </div>
+            <div class="product-detail-purchase-actions">
+              <div id="field1">
+                <button type="button" id="sub" class="sub">-</button>
+                <input type="number" id="1" value="1" min="1" max="99" />
+                <button type="button" id="add" class="add">+</button>
+              </div>
+              <a href="javascript:void(0)" class="btn btn-site btn-add-to-cart">Add to Cart</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <a href="javascript:void(0)" class="btn-close" data-dismiss="modal"></a>
+    </div>
+  </div>
+</div>
+</main>
 
 {% schema %}
 {

@@ -1,0 +1,37 @@
+<section class="index-make-a-cuptea">
+    <div class="container">
+        <div class="section-header text-lg-center">
+            <h2>Best Seller</h2>
+        </div>
+        <div class="section-body mt-4">
+            <div class="list-index-products">
+                {% for product in collections['all'].products%}
+                    <div class="item">
+                        <div class="img-holder">
+                            <a href="{{ product.url }}" style="background-image:url({{ product.featured_media | img_url:'1500x' }});"></a>
+                            <ul class="add-on-tools">
+                                <li><a href="javascript:void(0)"><i class="material-icons-outlined"> favorite_border </i></a></li>
+                                <li data-toggle="modal" data-target="#quickview"><a href="javascript:void(0)"><i class="material-icons"> search </i></a></li>
+                            </ul>
+                        </div>
+                        <div class="caption-holder">
+                            <div class="prod-category">  {{product.type}}</div>
+                            <div class="prod-title">
+                                <a href="{{ product.url }}">{{ product.title }}</a>
+                            </div>
+                            <div class="prod-price">
+                                {% render 'price', product: product %}
+                            </div>
+                            <div class="btn-select-options">
+                                <a href="{{ product.url }}" class="btn btn-site sec btn-block">Select Options</a>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="section-footer text-center mt-5">
+            <a href="/collections/all" class="btn btn-site">More selections</a>
+        </div>
+    </div>
+</section>

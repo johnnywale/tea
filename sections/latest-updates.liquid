@@ -1,0 +1,96 @@
+<section class="index-latest-blog pt-0">
+    <div class="container">
+        <div class="section-header text-center">
+            <h2>Latest Updates</h2>
+        </div>
+        <div class="section-body mt-5">
+            <div class="row list-latest-blog">
+        {% for article in blogs['News'].articles %}
+
+                {% if forloop.index == 1 %}
+                  <div class="col-md-6">
+                <div class="flex-item fea">
+                    <a href="{{ article.url }}" class="img-holder" style="background-image: url( {{ article.image | img_url }}); ">
+                        <div class="caption-holder">
+                            <div class="post-header">
+                                <div class="post-date">{{- article.published_at | time_tag: format: 'date' -}}</div>
+                                <div class="post-category">News</div>
+                            </div>
+                            <div class="post-body">
+                                <h3>{{ article.title | escape }}</h3>
+                                <div class="post-desc"> {%- if article.excerpt.size > 0 -%}
+                                        {{ article.excerpt | strip_html | truncatewords: 30 }}
+                                    {%- else -%}
+                                        {{ article.content | strip_html | truncatewords: 30 }}
+                                    {%- endif -%}</div>
+                            </div>
+                            <div class="post-footer">
+                                <span class="btn btn-site sec">Read more</span>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+                    {% if  forloop.length >1 %}
+                        <div class="col-md-6">
+                    {% endif %}
+                {% endif %}
+
+
+                {% if forloop.index == 2 %}
+
+                <div class="flex-item">
+                    <a href="{{ article.url }}" class="img-holder" style="background-image: url({{ article.image | img_url }});"></a>
+                    <div class="caption-holder">
+                        <div class="post-header">
+                            <div class="post-date">{{- article.published_at | time_tag: format: 'date' -}}</div>
+                            <div class="post-category">NEWS</div>
+                        </div>
+                        <div class="post-body">
+                            <h3><a href="{{ article.url }}">{{ article.title | escape }}</a></h3>
+                            <div class="post-desc">{%- if article.excerpt.size > 0 -%}
+                                    {{ article.excerpt | strip_html | truncatewords: 30 }}
+                                {%- else -%}
+                                    {{ article.content | strip_html | truncatewords: 30 }}
+                                {%- endif -%}</div>
+                        </div>
+                        <div class="post-footer">
+                            <a href="{{ article.url }}" class="btn btn-site sec">Read more</a>
+                        </div>
+                    </div>
+                </div>
+                {% endif %}
+            {% if forloop.index == 3 %}
+                <div class="flex-item">
+                    <a href="{{ article.url }}" class="img-holder" style="background-image: url({{ article.image | img_url }});"></a>
+                    <div class="caption-holder">
+                        <div class="post-header">
+                            <div class="post-date">{{- article.published_at | time_tag: format: 'date' -}}</div>
+                            <div class="post-category">NEWS</div>
+                        </div>
+                        <div class="post-body">
+                            <h3><a href="{{ article.url }}">{{ article.title }}</a></h3>
+                            <div class="post-desc">{%- if article.excerpt.size > 0 -%}
+                                    {{ article.excerpt | strip_html | truncatewords: 30 }}
+                                {%- else -%}
+                                    {{ article.content | strip_html | truncatewords: 30 }}
+                                {%- endif -%}<</div>
+                        </div>
+                        <div class="post-footer">
+                            <a href="{{ article.url }}" class="btn btn-site sec">Read more</a>
+                        </div>
+                    </div>
+                </div>
+                    {% if forloop.last == true and forloop.length >1 %}
+                        </div>
+                    {% endif %}
+
+                {% endif %}
+
+        {% endfor %}
+
+        </div>
+    </div>
+</div>
+</section>
+

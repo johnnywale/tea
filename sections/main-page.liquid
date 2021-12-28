@@ -1,22 +1,19 @@
-<link rel="stylesheet" href="{{ 'section-main-page.css' | asset_url }}" media="print" onload="this.media='all'">
-<link rel="stylesheet" href="{{ 'component-rte.css' | asset_url }}" media="print" onload="this.media='all'">
+<section class="has-bg p-0 d-flex main-hero"
+         style="background-image: url(https://www.24k.com.sg/workz/johnny/mist-valley-shop/v2/images/hero-contact-us.jpg);">
+    <div class="caption-holder">
+        <h2>{{ page.title | escape }}</h2>
+    </div>
+</section>
+<section>
 
-<noscript>{{ 'section-main-page.css' | asset_url | stylesheet_tag }}</noscript>
-<noscript>{{ 'component-rte.css' | asset_url | stylesheet_tag }}</noscript>
-
-<div class="page-width page-width--narrow">
-  <h1 class="main-page-title page-title h0">
-    {{ page.title | escape }}
-  </h1>
-  <div class="rte">
     {{ page.content }}
-  </div>
-</div>
+
+</section>
 
 {% schema %}
 {
-  "name": "t:sections.main-page.name",
-  "tag": "section",
-  "class": "spaced-section"
+"name": "t:sections.main-page.name",
+"tag": "section",
+"class": "spaced-section"
 }
 {% endschema %}

@@ -1,0 +1,20 @@
+<section class="index-our-tea-selection overflow-hidden">
+    <div class="fluid-container">
+        <div class="section-header text-center">
+            <h2>Our Tea Selection</h2>
+        </div>
+        <div class="section-body mt-5">
+            <div class="list-style-tea-selection d-flex">
+                {%- for collection in collections -%}
+                    <div class="flex-item">
+                        <a href="{{ collection.url }}">
+                            <div class="img-holder"><img src="{{ collection.featured_image | img_url }}" alt=""></div>
+                            <div class="caption-holder"> {{- collection.title -}}</div>
+                        </a>
+                        <a href="{{ collection.url }}" class="btn btn-site sec btn-block">Learn more</a>
+                    </div>
+                {%- endfor -%}
+            </div>
+        </div>
+    </div>
+</section>

@@ -1,94 +1,64 @@
-{{ 'section-contact-form.css' | asset_url | stylesheet_tag }}
-
-<div class="contact page-width page-width--narrow spaced-section">
-  <h2 class="title">{{ section.settings.heading | escape }}</h2>
-  {%- form 'contact', id: 'ContactForm' -%}
-    {%- if form.posted_successfully? -%}
+<section class="subpage pb-0">
+  <figure class="subsection">
+    <div class="container">
+      <div class="section-body">
+        <div class="row">
+          <div class="col-md-6 col-lg-7">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3961.014115963509!2d79.86255751510144!3d6.888912020717779!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ae25bd016c4e491%3A0xea3f3843058deda6!2s119%2C%205%20Mallika%20Pl%2C%20Colombo%2000500%2C%20Sri%20Lanka!5e0!3m2!1sen!2sus!4v1608016115791!5m2!1sen!2sus" width="100%" height="450" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+          </div>
+          <div class="col-md-6 col-lg-5">
+            <h1>Wilmar Tea Lanka PVT Ltd</h1>
+            <address>450, Thimbirigasyaya Road,<br/>Colombo 05, Sri Lanka.<br/><br/>
+              <strong>Phone</strong><br/>
+              +94112590146-8<br/><br/>
+              <strong>Email Address</strong><br/>
+              wtea-sales@lk.wilmar-intl.com
+            </address>
+          </div>
+        </div>
+      </div>
+    </div>
+  </figure>
+  <figure class="subsection">
+    <div class="container">
+      <div class="section-header text-center">
+        <h2>Enquiry</h2>
+      </div>
+      {%- form 'contact', id: 'ContactForm' -%}
+      {%- if form.posted_successfully? -%}
       <div class="form-status form-status-list form__message" tabindex="-1" autofocus>{% render 'icon-success' %} {{ 'templates.contact.form.post_success' | t }}</div>
-    {%- elsif form.errors -%}
-      <div class="form__message">
-        <h2 class="form-status caption-large" role="alert" tabindex="-1" autofocus>{% render 'icon-error' %} {{ 'templates.contact.form.error_heading' | t }}</h2>
+      {%- endif -%}
+      <div class="section-body mx-auto" style="max-width: 650px;">
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+              <input name="contact[name]" type="text" class="form-control" placeholder="Name">
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <input name="contact[email]" type="email" class="form-control" placeholder="Email">
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <input  name="contact[phone]"type="text" class="form-control" placeholder="Phone">
+        </div>
+        <div class="form-group">
+          <textarea nname="contact[message]" id="" rows="5" class="form-control" placeholder="Message"></textarea>
+        </div>
+        <div class="row mt-5">
+          <div class="col-md-6"></div>
+          <div class="col-md-6 text-right">
+            <button type="submit" class="button">
+              {{ 'templates.contact.form.send' | t }}
+            </button>
+            <!--
+                      <input type="submit" value="Submit Now" class="btn btn-site">
+                      -->
+          </div>
+        </div>
       </div>
-      <ul class="form-status-list caption-large" role="list">
-        <li>
-          <a href="#ContactForm-email" class="link">
-            {{ form.errors.translated_fields['email'] | capitalize }} {{ form.errors.messages['email'] }}
-          </a>
-        </li>
-      </ul>
-    {%- endif -%}
-    <div class="contact__fields">
-      <div class="field">
-        <input class="field__input" autocomplete="name" type="text" id="ContactForm-name" name="contact[{{ 'templates.contact.form.name' | t }}]" value="{% if form.name %}{{ form.name }}{% elsif customer %}{{ customer.name }}{% endif %}" placeholder="{{ 'templates.contact.form.name' | t }}">
-        <label class="field__label" for="ContactForm-name">{{ 'templates.contact.form.name' | t }}</label>
-      </div>
-      <div class="field field--with-error">
-        <input
-          autocomplete="email"
-          type="email"
-          id="ContactForm-email"
-          class="field__input"
-          name="contact[email]"
-          spellcheck="false"
-          autocapitalize="off"
-          value="{% if form.email %}{{ form.email }}{% elsif customer %}{{ customer.email }}{% endif %}"
-          aria-required="true"
-          {% if form.errors contains 'email' %}
-            aria-invalid="true"
-            aria-describedby="ContactForm-email-error"
-          {% endif %}
-          placeholder="{{ 'templates.contact.form.email' | t }}"
-        >
-        <label class="field__label" for="ContactForm-email">{{ 'templates.contact.form.email' | t }} <span aria-hidden="true">*</span></label>
-        {%- if form.errors contains 'email' -%}
-          <small class="contact__field-error" id="ContactForm-email-error">
-            <span class="visually-hidden">{{ 'accessibility.error' | t }}</span>
-            <span class="form__message">{% render 'icon-error' %}{{ form.errors.translated_fields['email'] | capitalize }} {{ form.errors.messages['email'] }}</span>
-          </small>
-        {%- endif -%}
-      </div>
+      {%- endform -%}
     </div>
-    <div class="field">
-      <input type="tel" id="ContactForm-phone" class="field__input" autocomplete="tel" name="contact[{{ 'templates.contact.form.phone' | t }}]" pattern="[0-9\-]*" value="{% if form.phone %}{{ form.phone }}{% elsif customer %}{{ customer.phone }}{% endif %}" placeholder="{{ 'templates.contact.form.phone' | t }}">
-      <label class="field__label" for="ContactForm-phone">{{ 'templates.contact.form.phone' | t }}</label>
-    </div>
-    <div class="field">
-      <textarea
-        rows="10"
-        id="ContactForm-body"
-        class="text-area field__input"
-        name="contact[{{ 'templates.contact.form.comment' | t }}]"
-        placeholder="{{ 'templates.contact.form.comment' | t }}"
-      >
-        {{- form.body -}}
-      </textarea>
-      <label class="form__label field__label" for="ContactForm-body">{{ 'templates.contact.form.comment' | t }}</label>
-    </div>
-    <div class="contact__button">
-      <button type="submit" class="button">
-        {{ 'templates.contact.form.send' | t }}
-      </button>
-    </div>
-  {%- endform -%}
-</div>
-
-{% schema %}
-{
-  "name": "t:sections.contact-form.name",
-  "tag": "section",
-  "class": "spaced-section",
-  "settings": [
-    {
-      "type": "text",
-      "id": "heading",
-      "default": "Contact form",
-      "label": "Heading"
-    }
-  ],
-  "presets": [
-    {
-      "name": "t:sections.contact-form.presets.name"
-    }
-  ]
-}
-{% endschema %}
+  </figure>

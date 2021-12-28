@@ -1,158 +1,425 @@
-{{ 'template-collection.css' | asset_url | stylesheet_tag }}
-{{ 'component-loading-overlay.css' | asset_url | stylesheet_tag }}
-{{ 'component-card.css' | asset_url | stylesheet_tag }}
-{{ 'component-price.css' | asset_url | stylesheet_tag }}
-{{ 'component-product-grid.css' | asset_url | stylesheet_tag }}
+<section class="subpage products pb-0">
+    <figure class="subsection">
+        <div class="container px-lg-3">
+            <div class="section-body">
+                <div class="row">
+                    <div class="col-md-4 col-lg-2">
+                        <div class="dropdown">
+                            <a class="btn dropdown-toggle" href="#" role="button" id="sidebarMenuLink"
+                               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Filter </a>
+                            <div class="dropdown-menu sidebar-menu visible-md" aria-labelledby="sidebarMenuLink">
+                                <div class="filter-group group-category">
+                                    <h3>Category</h3>
+                                    <ul>
+                                        {% for collection in collections %}
+                                            <li><a href="{{ collection.url }}">{{ collection.title | escape }}</a></li>
+                                        {% endfor %}
+                                    </ul>
+                                </div>
 
-<link rel="preload" href="{{ 'component-rte.css' | asset_url }}" as="style" onload="this.onload=null;this.rel='stylesheet'">
+                                <style>
+                                    .filter-group a.active {
+                                        background-color: var(--main-color);
+                                        color: #fff !important
+                                    }
+                                </style>
 
-<noscript>{{ 'component-rte.css' | asset_url | stylesheet_tag }}</noscript>
 
-{%- if section.settings.enable_filtering or section.settings.enable_sorting -%}
-  {{ 'component-facets.css' | asset_url | stylesheet_tag }}
-  <script src="{{ 'facets.js' | asset_url }}" defer="defer"></script>
+                                {%- for filter in collection.filters -%}
+                                    {% case filter.type %}
+                                        {% when 'list' %}
 
-  <div class="page-width" id="main-collection-filters" data-id="{{ section.id }}">
-    {% render 'facets', results: collection, enable_filtering: section.settings.enable_filtering, enable_sorting: section.settings.enable_sorting, collapse_on_larger_devices: section.settings.collapse_on_larger_devices %}
-  </div>
-{%- endif -%}
+                                            <div class="filter-group group-price mt-4 pt-2">
+                                                <h3>{{ filter.label | escape }}</h3>
+                                                <ul>
+                                                    {%- for value in filter.values -%}
+                                                        <li>
 
-<div id="ProductGridContainer">
-  {%- paginate collection.products by section.settings.products_per_page -%}
-    {%- if collection.products.size == 0 -%}
-      <div class="collection collection--empty page-width" id="product-grid" data-id="{{ section.id }}">
-        <div class="loading-overlay gradient"></div>
-        <div class="title-wrapper center">
-          <h2 class="title title--primary">
-            {{ 'sections.collection_template.empty' | t }}<br>
-            {{ 'sections.collection_template.use_fewer_filters_html' | t: link: collection.url, class: "underlined-link link" }}
-          </h2>
+                                                            <a class="shopify-filter {% if value.active %}active{% endif %} " data-name="{{ value.param_name }}"
+                                                               data-value="{{ value.value }}"
+                                                               href="javascript:void(0)">{{ value.label | escape }}
+                                                                ({{ value.count }})</a>
+
+                                                        </li>
+                                                    {%- endfor -%}
+                                                </ul>
+                                            </div>
+                                        {% when 'price_range' %}
+                                            <div class="filter-group group-price mt-4 pt-2">
+                                                <h3>Price</h3>
+                                                <ul>
+                                                    <li><a href="javascript:void(0)">$100 - $200</a></li>
+                                                    <li><a href="javascript:void(0)">$200 - $300</a></li>
+                                                    <li><a href="javascript:void(0)">$300 - $400</a></li>
+                                                </ul>
+                                            </div>
+                                    {% endcase %}
+                                {%- endfor -%}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-8 col-lg-10 pl-xl-5">
+                        <div class="list-products2 mt-2">
+                            <div class="list-products-header d-flex justify-content-md-end">
+                                {%- assign sort_by = collection.sort_by | default: collection.default_sort_by -%}
+                                <select name="" id="sortBy" class="form-control select-control" style="width: 200px;">
+                                    {%- for option in collection.sort_options -%}
+                                        <option {% if option.value == sort_by %} selected  {% endif %}
+                                                value="{{ option.value }}"> {{ option.name | escape }}</option>
+                                    {%- endfor -%}
+                                </select>
+                            </div>
+                        </div>
+                        <div class="list-products-body">
+                            <div class="list-index-products">
+
+                                {%- for product in collection.products -%}
+                                    <div class="item">
+                                        <div class="img-holder">
+                                            <a href="{{ product.url }}"
+                                               style="background-image:url({{ product.featured_media | img_url: '1500x' }});"></a>
+                                            <ul class="add-on-tools">
+                                                <li><a href="javascript:void(0)"><i class="material-icons-outlined">
+                                                            favorite_border </i></a></li>
+                                                <li class="product_quick_view" data-entity-id="{{ product.id }}"><a
+                                                            href="javascript:void(0)"><i class="material-icons">
+                                                            search </i></a></li>
+                                            </ul>
+                                        </div>
+                                        <div class="caption-holder">
+                                            <div class="prod-category">{{ product.type }}</div>
+                                            <div class="prod-title">
+                                                <a href="{{ product.url }}">{{ product.title }}</a>
+                                            </div>
+                                            <div class="prod-price">
+                                                {% render 'price', product: product %}
+                                            </div>
+                                            <div class="btn-select-options">
+                                                <a href="{{ product.url }}" class="btn btn-site sec btn-block">Select
+                                                    Options</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                {%- endfor -%}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
         </div>
-      </div>
-    {%- else -%}
-      <div class="collection page-width">
-        <div class="loading-overlay gradient"></div>
+        </div>
+    </figure>
+</figure>
+</section>
+<script type="text/javascript">
 
-        <ul id="product-grid" data-id="{{ section.id }}" class="
-          grid grid--2-col negative-margin product-grid
-          {% if collection.products_count < 4 %} grid--{{ collection.products_count }}-col-tablet{% else %}
-            {% if collection.products_count == 4 %} grid--4-col-desktop{% else %} grid--3-col-tablet grid--one-third-max grid--4-col-desktop grid--quarter-max{% endif %}
-          {% endif %}">
-          {%- for product in collection.products -%}
-            <li class="grid__item">
-              {% render 'product-card',
-                product_card_product: product,
-                media_size: section.settings.image_ratio,
-                show_secondary_image: section.settings.show_secondary_image,
-                add_image_padding: section.settings.add_image_padding,
-                show_vendor: section.settings.show_vendor,
-                show_image_outline: section.settings.show_image_outline,
-                show_rating: section.settings.show_rating
-              %}
-            </li>
-          {%- endfor -%}
-        </ul>
+    function load_grid(){
+        var filter = [];
+        filter.push($.param({
+            "section_id" : "{{ section.id }}"
+        }))
 
-        {%- if paginate.pages > 1 -%}
-          {% render 'pagination', paginate: paginate, anchor: '' %}
-        {%- endif -%}
-      </div>
-    {%- endif -%}
-  {%- endpaginate -%}
-</div>
+
+        $(".shopify-filter.active").each(function () {
+            var key = $(this).data("name");
+            var value = $(this).data('value');
+            var obj = {};
+            obj[key] = value;
+            filter.push($.param(obj));
+        })
+        var sort_by = $("#sortBy").val();
+        var obj = {};
+        obj['sort_by'] = sort_by;
+        filter.push($.param(obj));
+        console.log(filter);
+        let query = filter.join("&");
+
+        let path = window.location.href.split('?')[0]
+        console.log(path)
+        $.ajax({
+                timeout: 10000,
+                url: path+'?'+query,
+                dataType: 'html',
+                success: function (html, status, request) {
+                    var container = $("#shopify-section-{{ section.id }}")
+                    console.log(container);
+                    container.replaceWith(html);
+                    console.log(html);
+
+                },
+                error: function (xhr, ajaxOptions, thrownError) {
+
+
+                }
+            }
+        )
+    }
+
+    $('.filter-group a').click(function () {
+        $(this).toggleClass('active');
+        load_grid();
+    });
+    $('#sortBy').change(function (){
+        load_grid();
+    })
+
+
+
+
+    var x = {{ collection.products | json }}
+    var mp = {};
+    $(x).each(function () {
+        mp[this.id] = this;
+    });
+    console.log(mp);
+    $(".product_quick_view").click(function () {
+        var id = $(this).data("entity-id");
+        var product = mp[id];
+        console.log(product)
+        var view = $("#quickview");
+        $("#slide-content").empty();
+        try {
+            sync1.owlCarousel('destroy');
+        } catch (e) {
+
+        }
+        var template = `
+        <div id="sync1" class="owl-carousel owl-theme">
+        </div>
+        <div id="sync2" class="owl-carousel owl-theme">
+        </div>`;
+
+        var content = $.parseHTML(template);
+        $(content).appendTo($("#slide-content"));
+        var sync1 = $("#sync1").empty();
+        var sync2 = $("#sync2").empty();
+
+        $(product.images).each(function () {
+            var x = `<div class="item"><img src="" alt=""></div>`;
+            var html = $.parseHTML(x),
+                html = $(html).find("img").attr("src", this);
+            console.log(html);
+            $(html).appendTo(sync1);
+            $(html).clone().appendTo(sync2);
+        });
+
+
+        view.find(".prod-category").text(product.type);
+        view.find(".prod-title").text(product.title);
+        view.find(".highlights").html(product.description);
+        view.find(".desc").html(product.description);
+        view.modal('show');
+        var slidesPerPage = 4; //globaly define number of elements per page
+        var syncedSecondary = true;
+        sync1.owlCarousel({
+            items: 1,
+            slideSpeed: 2000,
+            nav: true,
+            autoplay: false,
+            dots: false,
+            loop: true,
+            responsiveRefreshRate: 200,
+            navText: ['<svg width="100%" height="100%" viewBox="0 0 11 20"><path style="fill:none;stroke-width: 1px;stroke: #000;" d="M9.554,1.001l-8.607,8.607l8.607,8.606"/></svg>', '<svg width="100%" height="100%" viewBox="0 0 11 20" version="1.1"><path style="fill:none;stroke-width: 1px;stroke: #000;" d="M1.054,18.214l8.606,-8.606l-8.606,-8.607"/></svg>'],
+        }).on('changed.owl.carousel', syncPosition);
+        sync2.on('initialized.owl.carousel', function () {
+            sync2.find(".owl-item").eq(0).addClass("current");
+        }).owlCarousel({
+            items: slidesPerPage,
+            dots: false,
+            nav: false,
+            smartSpeed: 200,
+            slideSpeed: 500,
+            slideBy: slidesPerPage, //alternatively you can slide by 1, this way the active slide will stick to the first item in the second carousel
+            responsiveRefreshRate: 100
+        }).on('changed.owl.carousel', syncPosition2);
+
+        function syncPosition(el) {
+//if you set loop to false, you have to restore this next line
+//var current = el.item.index;
+//if you disable loop you have to comment this block
+            var count = el.item.count - 1;
+            var current = Math.round(el.item.index - (el.item.count / 2) - .5);
+            if (current < 0) {
+                current = count;
+            }
+            if (current > count) {
+                current = 0;
+            }
+//end block
+            sync2
+                .find(".owl-item")
+                .removeClass("current")
+                .eq(current)
+                .addClass("current");
+            var onscreen = sync2.find('.owl-item.active').length - 1;
+            var start = sync2.find('.owl-item.active').first().index();
+            var end = sync2.find('.owl-item.active').last().index();
+            if (current > end) {
+                sync2.data('owl.carousel').to(current, 100, true);
+            }
+            if (current < start) {
+                sync2.data('owl.carousel').to(current - onscreen, 100, true);
+            }
+        }
+
+        function syncPosition2(el) {
+            if (syncedSecondary) {
+                var number = el.item.index;
+                sync1.data('owl.carousel').to(number, 100, true);
+            }
+        }
+
+        sync2.on("click", ".owl-item", function (e) {
+            e.preventDefault();
+            var number = $(this).index();
+            sync1.data('owl.carousel').to(number, 300, true);
+        });
+
+
+        // {id: 7046881804478, title: 'Misty Darjeeling', handle: 'misty-darjeeling', description: '', published_at: '2021-11-05T15:49:58+08:00', …}
+        // available: false
+        // compare_at_price: null
+        // compare_at_price_max: 0
+        // compare_at_price_min: 0
+        // compare_at_price_varies: false
+        // content: ""
+        // created_at: "2021-11-03T15:12:37+08:00"
+        // description: ""
+        // featured_image: "//cdn.shopify.com/s/files/1/0598/2765/0750/products/1R2M_9861.jpg?v=1637899675"
+        // handle: "misty-darjeeling"
+        // id: 7046881804478
+        // images: Array(4)
+        // 0: "//cdn.shopify.com/s/files/1/0598/2765/0750/products/1R2M_9861.jpg?v=1637899675"
+        // 1: "//cdn.shopify.com/s/files/1/0598/2765/0750/products/2R2M_9873.jpg?v=1637899675"
+        // 2: "//cdn.shopify.com/s/files/1/0598/2765/0750/products/3R2M_9890.jpg?v=1637899675"
+        // 3: "//cdn.shopify.com/s/files/1/0598/2765/0750/products/4R2M_9937.jpg?v=1637899675"
+        // length: 4
+        //     [[Prototype]]: Array(0)
+        // media: Array(4)
+        // 0: {alt: null, id: 22750754078910, position: 1, preview_image: {…}, aspect_ratio: 1, …}
+        // 1: {alt: null, id: 22750754111678, position: 2, preview_image: {…}, aspect_ratio: 1, …}
+        // 2: {alt: null, id: 22750754144446, position: 3, preview_image: {…}, aspect_ratio: 1.001, …}
+        // 3: {alt: null, id: 22750754177214, position: 4, preview_image: {…}, aspect_ratio: 1, …}
+        // length: 4
+        //     [[Prototype]]: Array(0)
+        // options: Array(1)
+        // 0: "Title"
+        // length: 1
+        //     [[Prototype]]: Array(0)
+        // price: 0
+        // price_max: 0
+        // price_min: 0
+        // price_varies: false
+        // published_at: "2021-11-05T15:49:58+08:00"
+        // tags: []
+        // title: "Misty Darjeeling"
+        // type: ""
+        // variants: [{…}]
+        // vendor: "Mist Valley - The Origin of Tea"
+        // $("#quickview").each(function (){
+        //
+        // }).modal('show');
+
+
+    });
+
+</script>
+
 
 {% schema %}
 {
-  "name": "t:sections.main-collection-product-grid.name",
-  "class": "spaced-section collection-grid-section",
-  "settings": [
-    {
-      "type": "range",
-      "id": "products_per_page",
-      "min": 8,
-      "max": 24,
-      "step": 4,
-      "default": 16,
-      "label": "t:sections.main-collection-product-grid.settings.products_per_page.label"
-    },
-    {
-      "type": "header",
-      "content": "t:sections.main-collection-product-grid.settings.header__3.content"
-    },
-    {
-      "type": "select",
-      "id": "image_ratio",
-      "options": [
-        {
-          "value": "adapt",
-          "label": "t:sections.main-collection-product-grid.settings.image_ratio.options__1.label"
-        },
-        {
-          "value": "portrait",
-          "label": "t:sections.main-collection-product-grid.settings.image_ratio.options__2.label"
-        },
-        {
-          "value": "square",
-          "label": "t:sections.main-collection-product-grid.settings.image_ratio.options__3.label"
-        }
-      ],
-      "default": "adapt",
-      "label": "t:sections.main-collection-product-grid.settings.image_ratio.label"
-    },
-    {
-      "type": "checkbox",
-      "id": "show_secondary_image",
-      "default": false,
-      "label": "t:sections.main-collection-product-grid.settings.show_secondary_image.label"
-    },
-    {
-      "type": "checkbox",
-      "id": "add_image_padding",
-      "default": false,
-      "label": "t:sections.main-collection-product-grid.settings.add_image_padding.label"
-    },
-    {
-      "type": "checkbox",
-      "id": "show_image_outline",
-      "default": true,
-      "label": "t:sections.main-collection-product-grid.settings.show_image_outline.label"
-    },
-    {
-      "type": "checkbox",
-      "id": "show_vendor",
-      "default": false,
-      "label": "t:sections.main-collection-product-grid.settings.show_vendor.label"
-    },
-    {
-      "type": "checkbox",
-      "id": "show_rating",
-      "default": false,
-      "label": "t:sections.main-collection-product-grid.settings.show_rating.label",
-      "info": "t:sections.main-collection-product-grid.settings.show_rating.info"
-    },
-    {
-      "type": "header",
-      "content": "t:sections.main-collection-product-grid.settings.header__1.content"
-    },
-    {
-      "type": "checkbox",
-      "id": "enable_filtering",
-      "default": true,
-      "label": "t:sections.main-collection-product-grid.settings.enable_filtering.label",
-      "info": "t:sections.main-collection-product-grid.settings.enable_filtering.info"
-    },
-    {
-      "type": "checkbox",
-      "id": "enable_sorting",
-      "default": true,
-      "label": "t:sections.main-collection-product-grid.settings.enable_sorting.label"
-    },
-    {
-      "type": "checkbox",
-      "id": "collapse_on_larger_devices",
-      "default": false,
-      "label": "t:sections.main-collection-product-grid.settings.collapse_on_larger_devices.label"
-    }
-  ]
+"name": "t:sections.main-collection-product-grid.name",
+"class": "spaced-section collection-grid-section",
+"settings": [
+{
+"type": "range",
+"id": "products_per_page",
+"min": 8,
+"max": 24,
+"step": 4,
+"default": 16,
+"label": "t:sections.main-collection-product-grid.settings.products_per_page.label"
+},
+{
+"type": "header",
+"content": "t:sections.main-collection-product-grid.settings.header__3.content"
+},
+{
+"type": "select",
+"id": "image_ratio",
+"options": [
+{
+"value": "adapt",
+"label": "t:sections.main-collection-product-grid.settings.image_ratio.options__1.label"
+},
+{
+"value": "portrait",
+"label": "t:sections.main-collection-product-grid.settings.image_ratio.options__2.label"
+},
+{
+"value": "square",
+"label": "t:sections.main-collection-product-grid.settings.image_ratio.options__3.label"
+}
+],
+"default": "adapt",
+"label": "t:sections.main-collection-product-grid.settings.image_ratio.label"
+},
+{
+"type": "checkbox",
+"id": "show_secondary_image",
+"default": false,
+"label": "t:sections.main-collection-product-grid.settings.show_secondary_image.label"
+},
+{
+"type": "checkbox",
+"id": "add_image_padding",
+"default": false,
+"label": "t:sections.main-collection-product-grid.settings.add_image_padding.label"
+},
+{
+"type": "checkbox",
+"id": "show_image_outline",
+"default": true,
+"label": "t:sections.main-collection-product-grid.settings.show_image_outline.label"
+},
+{
+"type": "checkbox",
+"id": "show_vendor",
+"default": false,
+"label": "t:sections.main-collection-product-grid.settings.show_vendor.label"
+},
+{
+"type": "checkbox",
+"id": "show_rating",
+"default": false,
+"label": "t:sections.main-collection-product-grid.settings.show_rating.label",
+"info": "t:sections.main-collection-product-grid.settings.show_rating.info"
+},
+{
+"type": "header",
+"content": "t:sections.main-collection-product-grid.settings.header__1.content"
+},
+{
+"type": "checkbox",
+"id": "enable_filtering",
+"default": true,
+"label": "t:sections.main-collection-product-grid.settings.enable_filtering.label",
+"info": "t:sections.main-collection-product-grid.settings.enable_filtering.info"
+},
+{
+"type": "checkbox",
+"id": "enable_sorting",
+"default": true,
+"label": "t:sections.main-collection-product-grid.settings.enable_sorting.label"
+},
+{
+"type": "checkbox",
+"id": "collapse_on_larger_devices",
+"default": false,
+"label": "t:sections.main-collection-product-grid.settings.collapse_on_larger_devices.label"
+}
+]
 }
 {% endschema %}

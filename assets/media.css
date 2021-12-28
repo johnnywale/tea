@@ -1,0 +1,237 @@
+/******************************************************************************************
+   + Focus style
+*******************************************************************************************/
+.btn:focus {
+  outline: none;
+  box-shadow: none;
+}
+.btn-yellow:focus {
+  background-color: #0d2972;
+}
+header .btn-yellow:focus {
+  background-color: #fff;
+  color: #0d2972;
+}
+#side-nav #mainNav li a:focus {
+  color: #ee7a10;
+}
+.btn-search:focus {
+  color: #fff;
+}
+
+/******************************************************************************************
+   + Mobile & Tablet
+*******************************************************************************************/
+@media (max-width: 1024px) {
+
+}
+
+/******************************************************************************************
+   + Mobile & Tablet Portrait
+*******************************************************************************************/
+@media (max-width: 991px) {
+.header-topbar {bottom: -47px; right: 52px;}
+.index-header>.container {align-items: flex-end;}
+header.navbar {height: auto; border:none;}
+.header-topbar.for-mobile {display: flex; justify-content: flex-start; align-items: flex-start; bottom: 0; transform: none; flex-wrap: wrap}
+.header-topbar.for-mobile .site-tools + .site-tools {margin-left: 0}
+.header-topbar.for-mobile .contact-us-wrapper {order:1; width: 100%}
+.header-topbar.for-mobile .search-wrapper {order:3; width: 40%; margin-top: 20px; margin-left: 20px !important;}
+.header-topbar.for-mobile .login-register-wrapper {order:4; width: 100%; margin-top: 20px;}
+.header-topbar.for-mobile .site-tools.contact-us-wrapper a {background-color: #fff; color: var(--main-color)}
+.hc-nav-trigger span, .hc-nav-trigger span::before, .hc-nav-trigger span::after {background-color: #fff; right: 0}
+.flex-divider .flex-item{flex:1 1 100%;}
+.hc-nav-trigger.hc-nav-1 {right: 0;}
+.hc-offcanvas-nav.nav-levels-overlap .nav-content {background-color: #f1f1f1;}
+.hc-offcanvas-nav .nav-content>.nav-close a {color: #333;}
+#hc-nav-1 .nav-item-wrapper>a {color: #333}
+#hc-nav-1 .nav-item-wrapper>a:hover {color: var(--main-color)}
+.hc-offcanvas-nav:not(.touch-device) li:not(.nav-item-custom) a:not([disabled]):hover {background-color: transparent; }
+.shrink .hc-nav-trigger span, .shrink .hc-nav-trigger span::before, .shrink .hc-nav-trigger span::after {background-color: #333}
+}
+
+/******************************************************************************************
+   + Mobile Only
+*******************************************************************************************/
+@media only screen and (max-width: 767px) {
+  .hidden-xs {
+    display: none;
+  }
+  .visible-xs {
+    display: block;
+  }
+  .subpage {padding-top: 2em;}
+  .navbar-brand img {max-height: 106px}
+  header.shrink .navbar-dark .navbar-brand {padding-top: 8px !important; padding-bottom: 8px !important}
+  header.shrink .navbar-dark .navbar-brand img {max-height: 50px}
+  footer .row:last-child {flex-direction: column; justify-content: center;}
+  footer .row:last-child .flex-item {text-align: flex-start;}
+  footer .row:last-child .flex-item.d-flex {justify-content: flex-start;}
+  .main-hero {min-height: 280px;}
+  .main-hero .caption-holder h2 {font-size: 2em;}
+  .counter-stats .item span.counter {font-size: 2.4em;}
+  .swiper-container .caption h2, .swiper-container .caption p {max-width: 80vw; margin-left: auto; margin-right: auto; font-size: 3.6em;}
+  .swiper-container .caption p {font-size: 1em;}
+  .drawer-nav {width: 100%; left: -100% !important}
+  .drawer-open .drawer-nav {left: 0 !important}
+  .drawer-open.search-active .drawer-hamburger {z-index: 0}
+  .search-input {width: 100vw; height: 100vh;margin-top: 0; padding-top: 50%;}
+  .flex-divider, .list-team {flex-direction: column;}
+  .list-team .flex-item + .flex-item {margin-top: 25px}
+  #ourGlobalFootprint {background-position:-1em 8em; min-height: auto;}
+  #ourGlobalFootprint .section-body {padding-top: 20em;}
+  .list-products .item, .list-tea-selections .item {width: 50%; padding-left: 10px; padding-right: 10px}
+  .list-index-products { margin-left: -10px; margin-right: -10px; }
+  .list-index-products .item {flex-basis: 50%; padding-left: 10px; padding-right: 10px;}
+  .subscribe-box .caption-holder {padding:30px;}
+  .list-latest-blog .flex-item>a {min-height: 400px;}
+  .subscribe-box .img-holder {flex-basis: 300px;}
+  .list-latest-blog .col-md-6:last-child {margin-top: 20px;}
+  .list-latest-blog .flex-item:not(.fea) .img-holder {flex-basis: 90px; height: 90px; min-height: auto;}
+  .list-latest-blog .flex-item:not(.fea) .caption-holder {flex-grow: 1; padding-left: 15px;}
+  .list-style-tea-selection {flex-wrap: wrap;}
+  .list-style-tea-selection .flex-item, .products .list-index-products .item, .products .list-index-products.related-products .item {flex-basis: 50%}
+  .list-style-tea-selection .flex-item>a {padding:10px;}
+  .list-style-tea-selection .btn, .subscribe-box .img-holder {display: none !important;}
+  .index-quick-links .he-680, .index-quick-links .he-340 { height: 250px; }
+  .list-testimonials .flex-item {max-width: 70vw;}
+  .list-testimonials .flex-item:before {left: -50px; font-size: 32px;}
+  .list-testimonials .flex-item:after {right: -50px; font-size: 32px; top: inherit;bottom: 0}
+}
+
+/******************************************************************************************
+   + Tablet Portrait above
+*******************************************************************************************/
+@media only screen and (min-width: 768px) {
+footer .row:last-child .flex-item.d-flex {justify-content: flex-end}
+}
+
+/******************************************************************************************
+   + Tablet only
+*******************************************************************************************/
+@media only screen and (min-width: 768px) and (max-width: 1024px) {
+}
+
+/******************************************************************************************
+   + Tablet Portrait only
+*******************************************************************************************/
+@media (min-width: 768px) and (max-width: 1024px) and (orientation: portrait) {
+}
+
+/******************************************************************************************
+   + Tablet Landscape only
+*******************************************************************************************/
+@media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
+}
+
+/******************************************************************************************
+   + Tablet Landscape above
+*******************************************************************************************/
+@media screen and (min-width: 992px) {
+  .visible-md {display: block;}
+  header .hc-nav-trigger.hc-nav-1 {display: none;}
+  .hidden-md {display: none}
+  .navbar-dark .navbar-brand {padding-left: 20px; padding-right: 20px; position: relative; top: -10px}
+  #nav-left .nav {justify-content: flex-end}
+  #nav-right .nav{justify-content: flex-start}
+  header .container {align-items: initial !important}
+  .navbar-expand-lg .navbar-nav .nav-link:last-child {padding-right: 0}
+  .navbar-expand-lg .navbar-nav {flex-wrap: nowrap; width: 100%}
+  .header-body {padding-top: 40px; flex-wrap: nowrap;}
+  .navbar-dark .navbar-nav .nav-link {font-size: 13px}
+  .header-topbar .dropdown .dropdown-menu {left: initial; right: 0}
+  section {padding-top: 4em; padding-bottom: 4em}
+  .flex-divider {flex-wrap: wrap}
+  .flex-divider .flex-item {flex:0 1 25%; padding-right: 3%;}
+  .flex-divider .flex-item + .flex-item {padding-left: 2%}
+  .flex-divider .flex-item:not(:last-child)::after {content: ''; position: absolute; top: 0; right: 3%; height: 100%; width: 1px; background-color: #eee}
+  #ourGlobalFootprint .flex-divider .flex-item:not(:last-child)::after {background-color: rgba(255,255,255,0.2)}
+  #sideMenu {display: block; position: relative; border:none; background-color: var(--main-color); border-radius: 0; margin:0;padding:1.2em; width: 100%; max-width: 265px; min-height: 450px}
+  #sideMenu .dropdown-item {color: #fff2c8; padding: 7px 5px 7px 7px; border-bottom: 1px solid rgba(255,255,255,0.3); background-color: transparent;}
+  #sideMenu .dropdown-item.active {color: #fff; font-weight: 600}
+  #sideMenu .dropdown-item:last-child {border:none;}
+.list-articles .item+.item {border-top: 1px solid #ddd; margin-top: 3.5em; padding-top: 3.5em}
+#index-intro {padding-bottom: 320px;}
+#index-overlay-section img {margin-top: -250px;}
+.mainsec-subscribe {margin-bottom: -190px; z-index: 1; position: relative;}
+.subscribe-box:hover {box-shadow: 0 12px 30px rgba(0,0,0,0.2); transform: scale(1.01);}
+.mainsec-testimonials {margin-top: -210px; padding-top: 230px; z-index: 0; position: relative;}
+.products .col-lg-2 .dropdown-toggle, .logon .col-lg-3 .dropdown-toggle {display: none;}
+}
+
+/******************************************************************************************
+   + Desktop
+*******************************************************************************************/
+@media screen and (min-width: 1024px) {
+.header-topbar .site-tools li a:hover {transform: translateY(-3px);}
+
+}
+
+/******************************************************************************************
+   + Desktop (to exclude ipad landscape)
+*******************************************************************************************/
+@media screen and (min-width: 1025px) {
+  .container {max-width: 95vw;}
+  .navbar-expand-lg .navbar-nav .dropdown-toggle:after {content: ''; background-color: transparent; height: 17px; width: 100%; display: block; border-radius: 0; position: absolute; left: 0; right: 0; border:none;}
+  .navbar-dark .navbar-nav .nav-link {font-weight: 400; }
+  section {padding-top: 5em; padding-bottom: 5em}
+  section.has-parallax, .subsection.has-parallax {background-attachment: fixed; min-height: 450px;}
+  #sideMenu {padding:2em;}
+  #sideMenu .dropdown-item {padding-top: 12px; padding-bottom: 12px;}
+  .list-articles .img-holder {max-width: 265px; min-width: 224px;}
+  .list-articles .caption-holder {padding-left: 3.5em}
+}
+
+/******************************************************************************************
+   + Hover style
+*******************************************************************************************/
+@media (min-width: 1025px) {
+  .navbar-dark .navbar-nav .nav-link:hover {background-color: var(--main-color); color: #fff}
+  .header-topbar .site-tools.login-register-wrapper a:hover {background-color: var(--main-color)}
+  .header-body .navbar-nav>li>a {line-height: 35px; padding:0 10px !important;}
+  .header-topbar .dropdown .btn-dropdown:hover {background-color: var(--sec-color)}
+  header.shrink.index-header .navbar-dark .navbar-nav .nav-link:hover {color: #fff;}
+  header.shrink .navbar-dark .navbar-nav .nav-link:hover {color: #fff !important}
+  #sideMenu .dropdown-item:focus, #sideMenu .dropdown-item:hover {color: #fff; border-bottom-color: #fff}
+  .list-index-products .item:hover .add-on-tools, .list-index-products .item:hover .btn-select-options {opacity: 1; transform: translateY(0); visibility: visible;}
+  .list-index-products .prod-title a:hover {color: var(--main-color)}
+  .list-index-products .item:hover .img-holder a {transform: scale(1.15);}
+}
+
+@media (min-width: 1025px) and (max-width: 1279px) {
+  .carousel,
+  .carousel-inner,
+  .carousel-item {
+    height: auto;
+  }
+}
+
+/******************************************************************************************
+   + Most Common use desktop
+/*******************************************************************************************/
+@media screen and (min-width: 1366px) {
+  .counter-stats .item span.counter {font-size: 4em}
+  .container {max-width: 1400px;}
+  .navbar-dark .navbar-nav .nav-link {font-size: 1.05em}
+  .navbar-expand-lg .navbar-nav .nav-item + .nav-item {margin-left: 12%}
+  .navbar-dark .navbar-brand {padding-left: 3em; padding-right: 3em}
+  #ourGlobalFootprint {background-size: 1440px 940px; background-position: top center}
+}
+
+/******************************************************************************************
+   + large Screen
+*******************************************************************************************/
+@media screen and (min-width: 1600px) {
+  header .container {max-width: 80vw;}
+}
+
+/******************************************************************************************
+   + IE Fixed
+*******************************************************************************************/
+
+@media screen\0 {
+}
+
+/* Firefox Fixed */
+@-moz-document url-prefix() {
+}
