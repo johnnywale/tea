@@ -46,11 +46,17 @@
                                             </div>
                                         {% when 'price_range' %}
                                             <div class="filter-group group-price mt-4 pt-2">
-                                                <h3>Price</h3>
+                                                {% assign min = filter.min_value.value | money_without_currency | plus :0 %}
+                                                <h3>   Price  </h3>
                                                 <ul>
-                                                    <li><a href="javascript:void(0)">$100 - $200</a></li>
-                                                    <li><a href="javascript:void(0)">$200 - $300</a></li>
-                                                    <li><a href="javascript:void(0)">$300 - $400</a></li>
+                                                    <li><a class="price-filter {% if min == 1 %}active{% endif %}"    data-min="1" data-max="5" href="javascript:void(0)">$1 - $5</a></li>
+                                                    <li><a class="price-filter {% if min == 5 %}active{% endif %}" data-min="5" data-max="10" href="javascript:void(0)">$5 - $10</a></li>
+                                                    <li><a class="price-filter  {% if min ==10 %}active{% endif %}" data-min="10" data-max="15" href="javascript:void(0)">$10 - $15</a></li>
+                                                    <li><a class="price-filter  {% if min ==15 %}active{% endif %}" data-min="15" data-max="20" href="javascript:void(0)">$15 - $20</a></li>
+                                                    <li><a class="price-filter  {% if min ==20 %}active{% endif %}" data-min="20" data-max="25" href="javascript:void(0)">$20 - $25</a></li>
+                                                    <li><a class="price-filter  {% if min ==25 %}active{% endif %}" data-min="25" data-max="30" href="javascript:void(0)">$25 - $30</a></li>
+                                                    <li><a class="price-filter  {% if min ==30 %}active{% endif %}" data-min="30" data-max="100" href="javascript:void(0)">$30+</a></li>
+
                                                 </ul>
                                             </div>
                                     {% endcase %}
@@ -129,10 +135,25 @@
             obj[key] = value;
             filter.push($.param(obj));
         })
+        $(".price-filter.active").each(function () {
+            var min = $(this).data("min");
+            var max = $(this).data('max');
+            var obj = {};
+            obj['filter.v.price.gte'] = min;
+            filter.push($.param(obj));
+
+            var obj = {};
+            obj['filter.v.price.lte'] = max;
+            filter.push($.param(obj));
+        })
+
+
+        //price-filter
         var sort_by = $("#sortBy").val();
         var obj = {};
         obj['sort_by'] = sort_by;
         filter.push($.param(obj));
+
         console.log(filter);
         let query = filter.join("&");
 
@@ -158,9 +179,15 @@
     }
 
     $('.filter-group a').click(function () {
+        if ($(this).hasClass('price-filter')){
+            var remove = $(".price-filter").not($(this));
+            remove.removeClass('active');
+        }
         $(this).toggleClass('active');
         load_grid();
     });
+    //
+
     $('#sortBy').change(function (){
         load_grid();
     })
@@ -278,49 +305,6 @@
         });
 
 
-        // {id: 7046881804478, title: 'Misty Darjeeling', handle: 'misty-darjeeling', description: '', published_at: '2021-11-05T15:49:58+08:00', …}
-        // available: false
-        // compare_at_price: null
-        // compare_at_price_max: 0
-        // compare_at_price_min: 0
-        // compare_at_price_varies: false
-        // content: ""
-        // created_at: "2021-11-03T15:12:37+08:00"
-        // description: ""
-        // featured_image: "//cdn.shopify.com/s/files/1/0598/2765/0750/products/1R2M_9861.jpg?v=1637899675"
-        // handle: "misty-darjeeling"
-        // id: 7046881804478
-        // images: Array(4)
-        // 0: "//cdn.shopify.com/s/files/1/0598/2765/0750/products/1R2M_9861.jpg?v=1637899675"
-        // 1: "//cdn.shopify.com/s/files/1/0598/2765/0750/products/2R2M_9873.jpg?v=1637899675"
-        // 2: "//cdn.shopify.com/s/files/1/0598/2765/0750/products/3R2M_9890.jpg?v=1637899675"
-        // 3: "//cdn.shopify.com/s/files/1/0598/2765/0750/products/4R2M_9937.jpg?v=1637899675"
-        // length: 4
-        //     [[Prototype]]: Array(0)
-        // media: Array(4)
-        // 0: {alt: null, id: 22750754078910, position: 1, preview_image: {…}, aspect_ratio: 1, …}
-        // 1: {alt: null, id: 22750754111678, position: 2, preview_image: {…}, aspect_ratio: 1, …}
-        // 2: {alt: null, id: 22750754144446, position: 3, preview_image: {…}, aspect_ratio: 1.001, …}
-        // 3: {alt: null, id: 22750754177214, position: 4, preview_image: {…}, aspect_ratio: 1, …}
-        // length: 4
-        //     [[Prototype]]: Array(0)
-        // options: Array(1)
-        // 0: "Title"
-        // length: 1
-        //     [[Prototype]]: Array(0)
-        // price: 0
-        // price_max: 0
-        // price_min: 0
-        // price_varies: false
-        // published_at: "2021-11-05T15:49:58+08:00"
-        // tags: []
-        // title: "Misty Darjeeling"
-        // type: ""
-        // variants: [{…}]
-        // vendor: "Mist Valley - The Origin of Tea"
-        // $("#quickview").each(function (){
-        //
-        // }).modal('show');
 
 
     });
