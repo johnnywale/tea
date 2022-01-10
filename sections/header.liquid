@@ -4,13 +4,16 @@
     <div class="header-topbar">
       <div class="site-tools">
         <ul>
-          <li><a href="login.php" title="Login/Sign Up"><i class="material-icons-outlined"> account_circle </i></a></li>
+          <li><a href="/account/login" title="Login/Sign Up"><i class="material-icons-outlined"> account_circle </i></a></li>
+          <!--
           <li><a href="wishlist.php"><i class="material-icons-outlined"> favorite_border </i> </a></li>
           <li><a href="javascript:void(0)" id="customToggleSearch"><i class="material-icons"> search </i></a></li>
+          -->
           <li><a href="javascript:void(0)" id="customToggleCart"><i class="material-icons-outlined"> shopping_cart </i><i class="cart-number">
                 {{ cart.item_count }}
               </i></a></li>
         </ul>
+        <!--
         <div class="site-tools" id="searchWrapper">
           <ul class="search-input">
             <form action="search.php">
@@ -25,6 +28,7 @@
             </form>
           </ul>
         </div>
+        -->
         <div class="site-tools" id="cartWrapper" style="background-color: black" class="p-5">
           <ul>
 
@@ -100,7 +104,31 @@
               url: path+'?section_id=header',
               dataType: 'html',
               success: function (html, status, request) {
-                  $("#shopify-section-header").replaceWith(html)
+                  $("#shopify-section-header").replaceWith(html);
+  $('#main-nav-mobile').hcOffcanvasNav({
+  disableAt: false,
+  navTitle: ' ',
+  labelClose: '',
+  });
+  
+  $('#cartWrapper').hcOffcanvasNav({
+  disableAt: false,
+  customToggle: '#customToggleCart',
+  navTitle: 'Shopping Cart',
+  position: 'right',
+  pushContent:'main',
+  labelClose: '',
+  width: '380',
+  });
+
+  $('#searchWrapper').hcOffcanvasNav({
+  disableAt: false,
+  customToggle: '#customToggleSearch',
+  navTitle: 'Search',
+  position: 'top',
+  pushContent:'main',
+  labelClose: '',
+  });
               },
               error: function (xhr, ajaxOptions, thrownError) {
 

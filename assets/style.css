@@ -529,7 +529,7 @@ a.btn-update {background-color: #898b8e; color: #fff}
 .pagi-nav span.current a {background-color: var(--main-color); color: #fff}
 .pagi-nav span:hover:not(.current) a {background-color: var(--sec-color); color: #fff}
 .post-footer {display: flex; justify-content: space-between;}
-
+form .form__message {max-width: 300px; margin: 20px auto 30px; text-align: center;}
 /******************************************************************************************
 + Plugin
 *******************************************************************************************/
@@ -624,7 +624,11 @@ a.btn-update {background-color: #898b8e; color: #fff}
 #sync1.owl-theme .owl-next, #sync3.owl-theme .owl-next {
   right: 10px;
 }
-#shopify-section-template--15283716718782__main, #shopify-section-template--15283716522174__main, #shopify-section-template--15283716686014__main, #shopify-section-template--15283716784318__main {padding-top: 0;}
+main>section:first-child {padding-top: 0;}
+.subpage.products figure.subsection .section-body {overflow: hidden;}
+main section.shopify-section:first-child{padding-bottom: 0;}
+main section.shopify-section .subpage.products{padding-bottom: 0;}
+main section.shopify-section+section.shopify-section {padding-top: 0; padding-bottom: 0;}
 /******************************************************************************************
    + Preloader
 *******************************************************************************************/

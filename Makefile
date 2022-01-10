@@ -1,4 +1,4 @@
 
 
-hellomake:
+hello:
 	shopify theme serve
