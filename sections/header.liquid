@@ -4,7 +4,7 @@
     <div class="header-topbar">
       <div class="site-tools">
         <ul>
-          <li><a href="/account/login" title="Login/Sign Up"><i class="material-icons-outlined"> account_circle </i></a></li>
+          <li><a href="{%- if customer -%}{{ routes.account_url }}{%- else -%}{{ routes.account_login_url }}{%- endif -%}" title="Login/Sign Up"><i class="material-icons-outlined"> account_circle </i></a></li>
           <!--
           <li><a href="wishlist.php"><i class="material-icons-outlined"> favorite_border </i> </a></li>
           <li><a href="javascript:void(0)" id="customToggleSearch"><i class="material-icons"> search </i></a></li>
