@@ -14,7 +14,7 @@
 {% endcomment %}
 <div class="col-md-4">
   <div class="flex-item">
-    <a href="{{ article.url }}" class="img-holder" style="background-image: url({{ article.image.src | img_url }});"></a>
+    <a href="{{ article.url }}" class="img-holder" style="background-image: url({{ article.image.src | img_url: '3000x' }});"></a>
     <div class="caption-holder">
       <div class="post-header">
         <div class="post-date"> {{- article.published_at | time_tag: format: 'date' -}} </div>
