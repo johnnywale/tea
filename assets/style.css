@@ -530,6 +530,7 @@ a.btn-update {background-color: #898b8e; color: #fff}
 .pagi-nav span:hover:not(.current) a {background-color: var(--sec-color); color: #fff}
 .post-footer {display: flex; justify-content: space-between;}
 form .form__message {max-width: 300px; margin: 20px auto 30px; text-align: center;}
+.shopify-challenge__container {padding:4em 0;}
 /******************************************************************************************
 + Plugin
 *******************************************************************************************/
