@@ -540,9 +540,9 @@ form .form__message {max-width: 300px; margin: 20px auto 30px; text-align: cente
 .swiper-container .overlay {background-color: rgba(0,0,0,0.2); content:''; position: absolute; top: 0; right: 0; bottom: 0; left: 0; z-index: 0}
 .swiper-container .caption {max-width: 900px; color: #fff; z-index: 1; position: relative; margin-left: 10%}
 .swiper-container .caption h2, .swiper-container .caption p {color: inherit; transform: translateY(20px); opacity: 0; visibility: hidden; transform-origin: center; text-shadow: 0 1px 1px rgba(0,0,0,0.4)}
-.swiper-container .caption h2 {font-size: 7.2em; margin-bottom: 0; font-family: 'STIX Two Text', serif; transition: 500ms linear; text-transform: uppercase; color: var(--main-color); line-height: .8}
+.swiper-container .caption h2 {font-size: 4.2em; margin-bottom: 0; font-family: 'STIX Two Text', serif; transition: 500ms linear; text-transform: uppercase; color: var(--main-color); line-height: .8}
 .swiper-container .caption h3, .swiper-container .caption p {margin-bottom: 0; color: #fff}
-.swiper-container .caption p {font-size: 3.2em; font-weight: 400; transform: translateY(20px); opacity: 0; visibility: hidden; transition: 500ms linear; }
+.swiper-container .caption p {font-size: 2.2em; font-weight: 400; transform: translateY(20px); opacity: 0; visibility: hidden; transition: 500ms linear; }
 .swiper-container .caption p.small-note {font-size: 1.2em}
 .swiper-container .swiper-slide {display:flex; justify-content: flex-start; align-items: center;}
 .swiper-container .btn-site.outline {background-color: transparent; border-color: #fff; color: #fff}
