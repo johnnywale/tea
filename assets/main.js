@@ -64,30 +64,30 @@ $(document).ready(function() {
   });
 
 
-  $('#main-nav-mobile').hcOffcanvasNav({
-  disableAt: false,
-  navTitle: ' ',
-  labelClose: '',
-  });
+  // $('#main-nav-mobile').hcOffcanvasNav({
+  // disableAt: false,
+  // navTitle: ' ',
+  // labelClose: '',
+  // });
   
-  $('#cartWrapper').hcOffcanvasNav({
-  disableAt: false,
-  customToggle: '#customToggleCart',
-  navTitle: 'Shopping Cart',
-  position: 'right',
-  pushContent:'main',
-  labelClose: '',
-  width: '380',
-  });
+  // $('#cartWrapper').hcOffcanvasNav({
+  // disableAt: false,
+  // customToggle: '#customToggleCart',
+  // navTitle: 'Shopping Cart',
+  // position: 'right',
+  // pushContent:'main',
+  // labelClose: '',
+  // width: '380',
+  // });
 
-  $('#searchWrapper').hcOffcanvasNav({
-  disableAt: false,
-  customToggle: '#customToggleSearch',
-  navTitle: 'Search',
-  position: 'top',
-  pushContent:'main',
-  labelClose: '',
-  });
+  // $('#searchWrapper').hcOffcanvasNav({
+  // disableAt: false,
+  // customToggle: '#customToggleSearch',
+  // navTitle: 'Search',
+  // position: 'top',
+  // pushContent:'main',
+  // labelClose: '',
+  // });
 
 
 });

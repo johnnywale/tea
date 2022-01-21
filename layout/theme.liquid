@@ -34,10 +34,10 @@
     {{ content_for_header }}
     </div>
 
-    <link rel="stylesheet"href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.3/css/bootstrap.min.css" />
-    <link rel="stylesheet"href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.3/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/5.4.5/css/swiper.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hc-offcanvas-nav@6.1.3/dist/hc-offcanvas-nav.css">
+    <link rel="stylesheet" href="https://npmcdn.com/js-offcanvas/dist/_css/minified/js-offcanvas.css">
 
     {{ 'style.css' | asset_url | stylesheet_tag }}
     {{ 'media.css' | asset_url | stylesheet_tag }}
@@ -52,19 +52,66 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/5.4.5/js/swiper.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/iScroll/5.2.0/iscroll.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/hc-offcanvas-nav@6.1.3/dist/hc-offcanvas-nav.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
     {{ 'main.js' | asset_url | script_tag }}
 
     <script>document.documentElement.className = document.documentElement.className.replace('no-js', 'js');</script>
+    
+    <style>
+    .header-body {z-index: 1}
+    .header-topbar .site-tools>ul>li>a>i {font-size: 28px;}
+    #off-canvas-top {background-color: #fff !important; padding:30px 0 60px; height: auto}
+    #off-canvas-top .nav-content {width: 90%; margin:30px auto;}
+    #off-canvas-top .input-group {flex-wrap: nowrap;}
+    #off-canvas-top .input-group .btn {border:none; font-size: 16px;}
+    #off-canvas-top .input-search {border: none; border-bottom: 1px solid #333; padding: 12px 45px 12px 12px; outline: none; box-shadow: none; font-size: 16px; flex-grow: 1}
+    #off-canvas-top .input-group-append {position: absolute; bottom: 2px; right: -10px;}
+    #off-canvas-top .input-search:focus {outline: none;}
+    #off-canvas-top .l-wrapper {width: 90%; margin:0 auto; overflow: hidden;}
+    #off-canvas-right-push, #main-nav-mobile {background-color: #fff}
+    #off-canvas-right-push ul li:last-child {position: fixed; bottom: 0; width: 100%; background-color: #f1f1f1; border-top: 1px solid #ddd}
+    #off-canvas-right-push .st-list-cart-items {height: calc(100vh - 210px); overflow-y: scroll; padding:0;}
+    .nav-title {font-size: 19px; font-weight: normal; padding: 20px 0; color: #333;}
+    .js-offcanvas-close {position: absolute; top: 15px; right: 15px; color: #333;}
+    .js-offcanvas-close:hover {color: var(--main-color)}
+    .st-cart-item .st-product_remove>a>i {font-size: 14px !important;}
+    .c-offcanvas--right {width: 27em;}
+    .c-offcanvas-bg.c-offcanvas-bg--push.c-offcanvas-bg--right.is-open {transform: translate3d(-27em,0,0)}
+    .c-offcanvas-bg.is-animating, .c-offcanvas-bg.is-open {background-color: rgba(0,0,0,.4)}
+    .header-topbar #cartWrapper ul li {margin-left: 0;}
+    .header-topbar #cartWrapper li a {color: #333;}
+    #cartWrapper .nav-title {padding:15px;}
+    #main-nav-mobile a {color: #333;}
+ 
+.hamburger-menu {
+  display: inline-block;
+  height: 43px;
+  transition: all 0.3s ease-in-out;
+}
+.hamburger-menu .menu-item {
+  background: #fff;
+  display: block;
+  height: 2px;
+  margin: 0 0 10px;
+  transition: all 0.3s ease-in-out;
+  width: 30px;
+}
+    @media (max-width: 991px) {.drawer-hamburger {display: block;}}
+    @media (max-width: 768px) {
+    .search-input {height: auto;}
+    #off-canvas-top {padding-bottom: 0;}
+    }
+    </style>
   </head>
 
   <body>
 
     <div id="preloader"></div>
     {% section 'header' %}
-    <main role="main" class="content">
+    <main role="main c-offcanvas-content-wrap" class="content" role="main">
+    <div class="c-page l-wrapper u-pos-relative">
       {{ content_for_layout }}
+    </div>
     </main>
 
     {% section 'footer' %}
