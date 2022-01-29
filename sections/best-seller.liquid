@@ -5,7 +5,8 @@
         </div>
         <div class="section-body mt-4">
             <div class="list-index-products">
-                {% for product in collections['all'].products%}
+                {% assign best_sell = collections['all'].products | sort : 'best-selling' | slice: 1, 12 %}
+                {% for product in best_sell%}
                     <div class="item">
                         <div class="img-holder">
                             <a href="{{ product.url }}" style="background-image:url({{ product.featured_media | img_url:'1500x' }});"></a>
