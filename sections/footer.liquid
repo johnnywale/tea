@@ -7,7 +7,7 @@
       <div class="subscribe-box">
         <div class="img-holder" style="background-image: url(https://www.24k.com.sg/workz/johnny/mist-valley-shop/v2/images/bg-subscribe-box.jpg);"></div>
         <div class="caption-holder">
-          <h2 class="mb-2">Subscribe Our Newsletter</h2>
+          <h2 class="mb-2">Subscribe</h2>
           <p>Sign up for our newsletter</p>
           <form action="" class="form-subscribe">
             <div class="input-group mb-3">
@@ -144,6 +144,100 @@
     </div>
   </div>
 </footer>
+
+
+    <script src="https://npmcdn.com/js-offcanvas/dist/_js/js-offcanvas.pkgd.min.js"></script>
+<script>
+     // https://github.com/vmitsaras/js-offcanvas
+$( function(){
+
+
+
+$("#check").click(function(){
+    var x = $("header").html();
+    $("header").html(x);
+        $('#off-canvas-top').offcanvas();
+        $('#off-canvas-right-push').offcanvas();
+});
+
+  
+  $( document ).bind( "beforecreate.offcanvas", function( e ){
+    var dataOffcanvas = $( e.target ).data('offcanvas-component');
+    console.log(dataOffcanvas);
+    dataOffcanvas.onInit =  function() {
+     console.log(this);
+    };
+  } );
+  
+  $( document ).bind( "create.offcanvas", function( e ){
+    var dataOffcanvas = $( e.target ).data('offcanvas-component');
+    console.log(dataOffcanvas);
+    dataOffcanvas.onOpen =  function() {
+      console.log('Callback onOpen');
+    };
+    dataOffcanvas.onClose =  function() {
+      console.log('Callback onClose');
+    };
+  });
+
+  $( document ).bind( "clicked.offcanvas-trigger clicked.offcanvas", function( e ){
+    var dataBtnText = $( e.target ).text();
+    console.log(e.type + '.' + e.namespace + ': ' + dataBtnText);
+  } );
+
+  $( document ).bind( "open.offcanvas", function( e ){
+    var dataOffcanvasID = $( e.target ).attr('id');
+    console.log(e.type + ': #' + dataOffcanvasID);
+  } );
+
+  $( document ).bind( "resizing.offcanvas", function( e ){
+    var dataOffcanvasID = $( e.target ).attr('id');
+    console.log(e.type + ': #' + dataOffcanvasID);
+  } );
+
+  $( document ).bind( "close.offcanvas", function( e ){
+    var dataOffcanvasID = $( e.target ).attr('id');
+    console.log(e.type + ': #' + dataOffcanvasID);
+  } );
+
+  $( '.js-open' ).bind( "create.offcanvas", function( e ){
+    var dataOffcanvas = $(this).data('offcanvas-component');
+    setTimeout(function(){
+      //dataOffcanvas.open();
+    }, 200);
+  } );
+  
+  $( document ).bind( "beforecreate.offcanvas", function( e ){
+    var $offcanvas = $( e.target ),
+        api = $offcanvas.data('offcanvas-component');
+    
+   
+
+    function onFocusIn() {
+      console.log('onFocusIn');
+      api.options.resize = false;
+       console.log(api.options.resize);
+       $(window).off('resize.offcanvas orientationchange.offcanvas');
+    }
+    
+    function onFocusOut() {
+      console.log('onFocusOut');
+      api.options.resize = true;
+       console.log(api.options.resize);
+       $(window).on('resize.offcanvas orientationchange.offcanvas');
+      api.resize();
+    }
+
+    $offcanvas.on('focusin', 'input,textarea', onFocusIn)
+      .on('focusout', 'input,textarea', onFocusOut);
+  });  
+  
+  
+    // Trigger Enhance
+    $( document ).trigger( "enhance" );
+});
+        </script>
+
 
 {% schema %}
 {
