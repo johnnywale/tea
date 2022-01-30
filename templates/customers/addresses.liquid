@@ -1,56 +1,223 @@
-<section class="has-bg p-0 d-flex main-hero" style="background-image: url(https://www.24k.com.sg/workz/johnny/mist-valley-shop/v2/images/hero-cart.jpg);">
-  <div class="caption-holder">
-    <h2>{{ 'customer.addresses.title' | t }}</h2>
-  </div>
+<section class="has-bg p-0 d-flex main-hero"
+         style="background-image: url(https://www.24k.com.sg/workz/johnny/mist-valley-shop/v2/images/hero-cart.jpg);">
+    <div class="caption-holder">
+        <h2>{{ 'customer.addresses.title' | t }}</h2>
+    </div>
 </section>
-<!-- end section -->
-
 <section class="subpage logon">
-  <figure class="subsection">
-    <div class="container">
-      <div class="section-body">
-        <a href="{{ routes.account_url }}"><span class="material-icons-outlined" style="vertical-align: middle"> chevron_left </span>  {{ 'customer.account.return' | t }}</a>
-        <div class="row">
-          <div class="col-md-10 mt-4">
-            <h2>My Address</h2>
-            <div class="list-address">
-
-              {%- for address in customer.addresses -%}
-                <div class="item">
-                  {%- if address == customer.default_address -%}
-                    <div class="address-title">{{ 'customer.addresses.default' | t }}</div>
-                  {%- endif -%}
-
-                  <address>
-                    {{ address.first_name  }} {{ address.last_name  }}<br/><br/>
-                    {{ address.company  }}<br/>
-                    {{ address.address1 | t }}, <br/>{{ address.address2  }},<br/>{{ address.zip  }} {{ address.city  }}
-                  </address>
-                  <div class="address-footer">
-                    <a href="javascript:void(0)" data-toggle="modal" data-target="#editAddress">{{ 'customer.addresses.edit' | t }}</a>
-                    <!--
-                    <a href="javascript:void(0)">Delete</a>
-                    -->
+    <figure class="subsection">
+        <div class="container">
+            <div class="section-body">
+                <a href="{{ routes.account_url }}"><span class="material-icons-outlined" style="vertical-align: middle"> chevron_left </span> {{ 'customer.account.return' | t }}
+                </a>
+                <div class="row">
+                    <div class="col-md-10 mt-4">
+                        <h2>My Address</h2>
+                        <div class="list-address">
+                            {%- for address in customer.addresses -%}
+                                <div class="item">
+                                    {%- if address == customer.default_address -%}
+                                        <div class="address-title">{{ 'customer.addresses.default' | t }}</div>
+                                    {%- endif -%}
+                                    <address>
+                                        {{ address.first_name }} {{ address.last_name }}<br/><br/>
+                                        {{ address.company }}<br/>
+                                        {{ address.address1 | t }}, <br/>{{ address.address2 }}
+                                        ,<br/>{{ address.zip }} {{ address.city }}
+                                    </address>
+                                    <div class="address-footer">
+                                        <a href="javascript:void(0)" class="edit-address" data-id="{{ address.id }}"
+                                           data-target="#editAddress">{{ 'customer.addresses.edit' | t }}</a>
+                                        <a href="javascript:void(0)" class="delete-address" data-id="{{ address.id }}" >Delete</a>
+                                        <!--
                     <button
                             type="button"
                             aria-label="{{ 'customer.addresses.delete' | t }} {{ forloop.index }}"
                             data-target="{{ address.url }}"
                             data-confirm-message="{{ 'customer.addresses.delete_confirm' | t }}"
                     >
-                      {{ 'customer.addresses.delete' | t }}
-                    </button>
-                  </div>
+
+                    -->
+
+                                        </button>
+                                    </div>
+                                </div>
+                            {%- endfor -%}
+                        </div>
+                    </div>
                 </div>
-              {%- endfor -%}
             </div>
-            <!--
-            <h2 class="mt-5">My Address</h2>
-            <p>No addresses were saved yet</p>
-            <a href="javascript:void(0)" class="btn btn-site" data-toggle="modal" data-target="#addAddress"> {{ 'customer.addresses.add_new' | t }}</a>
-            -->
-          </div>
+            <a href="javascript:void(0)" class="btn btn-site" data-toggle="modal" data-target="#addAddress">Add a new
+                address</a>
+
         </div>
-      </div>
-    </div>
-  </figure>
+
+    </figure>
+
 </section>
+
+
+<div class="modal fade" id="addAddress" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-body">
+                <h3 class="mb-2">Add a new address</h3>
+                <p>Please fill in the information below:</p>
+                {%- form 'customer_address', customer.new_address, aria-labelledBy: 'AddressNewHeading' -%}
+                    <div class="form-group">
+                        <input type="text" name="address[first_name]" class="form-control" placeholder="First Name">
+                    </div>
+                    <div class="form-group">
+                        <input type="text" name="address[last_name]" class="form-control" placeholder="Last Name">
+                    </div>
+                    <div class="form-group">
+                        <input type="text" name="address[company]" class="form-control" placeholder="Company">
+                    </div>
+                    <div class="form-group">
+                        <input type="text" name="address[phone]" class="form-control" placeholder="Phone">
+                    </div>
+                    <div class="form-group">
+                        <input type="text" name="address[address1]"  class="form-control" placeholder="Address 1">
+                    </div>
+                    <div class="form-group">
+                        <input type="text" name="address[address2]"  class="form-control" placeholder="Address 2">
+                    </div>
+                    <div class="form-group">
+                        <input type="text" name="address[city]" class="form-control" placeholder="City">
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <select id="country" name="address[country]" class="form-control">
+                                    {{ all_country_option_tags }}
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <input type="text" name="address[zip]" class="form-control" placeholder="Zip code">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group mb-4 form-check">
+                        <input type="checkbox" class="form-check-input"  name="address[default]">
+                        <label class="form-check-label" for="terms">Set as default address</label>
+                    </div>
+                    <div class="form-group mt-3">
+                        <input type="submit" class="btn btn-site btn-block" value="Submit">
+                    </div>
+                {%- endform -%}
+            </div>
+            <a href="" class="btn-close" data-dismiss="modal"></a>
+        </div>
+    </div>
+</div>
+
+<form method="post" id="delete-form" class="mt-4">
+    <input type="hidden" name="_method" value="delete">
+</form>
+
+<div class="modal fade" id="editAddress" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-body">
+                <h3 class="mb-2">Edit an address</h3>
+                <p>Please fill in the information below:</p>
+
+                  <form method="post" id="edit-form" class="mt-4">
+                      <input type="hidden" name="form_type" value="customer_address">
+                      <input type="hidden" name="utf8" value="✓">
+                      <input type="hidden" name="_method" value="put">
+
+                    <div class="form-group">
+                        <input type="text" name="address[first_name]" class="form-control" placeholder="First Name">
+                    </div>
+                    <div class="form-group">
+                        <input type="text" name="address[last_name]" class="form-control" placeholder="Last Name">
+                    </div>
+                    <div class="form-group">
+                        <input type="text" name="address[company]" class="form-control" placeholder="Company">
+                    </div>
+                    <div class="form-group">
+                        <input type="text" name="address[phone]" class="form-control" placeholder="Phone">
+                    </div>
+                    <div class="form-group">
+                        <input type="text" name="address[address1]"  class="form-control" placeholder="Address 1">
+                    </div>
+                    <div class="form-group">
+                        <input type="text" name="address[address2]"  class="form-control" placeholder="Address 2">
+                    </div>
+                    <div class="form-group">
+                        <input type="text" name="address[city]" class="form-control" placeholder="City">
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <select id="country" name="address[country]" class="form-control">
+                                    {{ all_country_option_tags }}
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <input type="text" name="address[zip]" class="form-control" placeholder="Zip code">
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="form-group mb-4 form-check">
+                        <input type="checkbox" value="1" class="form-check-input"  name="address[default]">
+                        <label class="form-check-label" for="address">Set as default address</label>
+                    </div>
+                    <div class="form-group mt-3">
+                        <input type="submit" class="btn btn-site btn-block" value="Submit">
+                    </div>
+                </form>
+            </div>
+            <a href="" class="btn-close" data-dismiss="modal"></a>
+        </div>
+    </div>
+</div>
+<script>
+    var customers = {{ customer.addresses | json }}
+    var cs = {};
+    for (var i = 0; i < customers.length; i++) {
+        console.log(customers[i])
+        cs[customers[i].id] = customers[i]
+    }
+
+    $(".delete-address").click(function (){
+        var id = $(this).data("id");
+        $("#delete-form").attr("action","/account/addresses/"+id)
+
+        if (confirm("Are you sure you wish to delete this address?") == true) {
+
+            $("#delete-form").submit()
+
+        } else {
+
+        }
+    });
+
+    $(".edit-address").click(function (){
+            var id = $(this).data("id");
+            console.log(id);
+            console.log(cs[id]);
+            $("#edit-form").attr("action","/account/addresses/"+id)
+            $("#editAddress").modal('show')
+
+            $.each(cs[id], function( key, value ) {
+                var query = "[name=\"address["+key+"]\"";
+                console.log(query)
+                var x =$("#edit-form").find(query);
+                if (key!="default"){
+                    x.val(value);
+                } else{
+                  x.prop('checked', value);
+               }
+            });
+
+    });
+
+</script>

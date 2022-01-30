@@ -13,11 +13,11 @@
           {%- form 'customer_login', novalidate: 'novalidate' -%}
             <div class="form-group">
               <label for="">Email</label>
-              <input type="email" name="email" class="form-control" placeholder="Email Address">
+              <input type="email" name="customer[email]" class="form-control" placeholder="Email Address">
             </div>
             <div class="form-group">
               <label for="">Password</label>
-              <input type="password" class="form-control">
+              <input name="customer[password]" type="password" class="form-control">
             </div>
 
               {%- if form.errors -%}
@@ -33,10 +33,11 @@
               {%- endif -%}
 
 
+
               <div class="form-group mt-4 text-center">
-              <button>
-                {{ 'customer.login_page.submit' | t }}
-              </button>
+                  <input id="submit" type="submit" class="btn btn-site" value="Login">
+              </div>
+
               {% comment %}<input type="submit" class="btn btn-site" value="">{% endcomment %}
             </div>
             <p class="text-center"><a href="#">Forgot your password?</a></p>
@@ -57,3 +58,12 @@
     </div>
   </figure>
 </section>
+
+<script>
+    // $("#submit").click(function (e){
+    //     e.preventDefault();
+    //     var data=       $(this).parents("form:first").serialize();
+    //     console.log(data)
+    //     console.log("===")
+    // })
+</script>
