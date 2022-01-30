@@ -129,10 +129,6 @@
 
     function load_grid(){
         var filter = [];
-        filter.push($.param({
-            "section_id" : "{{ section.id }}"
-        }))
-
 
         $(".shopify-filter.active").each(function () {
             var key = $(this).data("name");
@@ -161,8 +157,13 @@
         filter.push($.param(obj));
 
         console.log(filter);
-        let query = filter.join("&");
+        let url = filter.join("&");
+        console.log(url)
+        filter.push($.param({
+            "section_id" : "{{ section.id }}"
+        }))
 
+        let query = filter.join("&");
         let path = window.location.href.split('?')[0]
         console.log(path)
         $.ajax({
@@ -174,7 +175,9 @@
                     console.log(container);
                     container.replaceWith(html);
                     console.log(html);
+                    window.history.pushState('page2', 'Title', path+ '?'+url);
 
+//                    window.location.hash =
                 },
                 error: function (xhr, ajaxOptions, thrownError) {
 
