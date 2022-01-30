@@ -10,7 +10,7 @@
     <div class="container">
       <div class="section-body">
         <p><a href="{{ routes.account_logout_url }}">{{ 'customer.log_out' | t }}?</a></p>
-        <p class="lead">Welcome back, <strong>Peter Yap</strong></p>
+        <p class="lead">Welcome back, <strong>{{  customer.first_name   }}  {{ customer.last_name }} </strong></p>
         <div class="row mt-5">
           <div class="col-md-8 pr-lg-5">
             {%- if customer.orders.size > 0 -%}
