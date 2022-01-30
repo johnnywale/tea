@@ -41,14 +41,14 @@
                             </p>
                         </div>
                         <div class="product-detail-purchase-options">
-                            {{ product.variants | json }}
+
                             <br/>
                             {%- for option in product.options_with_values -%}
                                 <div class="form-check form-check-inline">
                                     <div class="label">{{ option.name }}</div>
                                     {%- for value in option.values -%}
-                                    <input type="radio" id="{{ section.id }}-{{ value }}-{{ forloop.index0 }}"
-                                           name="inlineRadioOptions"
+                                    <input class="optionCheck" type="radio" id="{{ section.id }}-{{ value }}-{{ forloop.index0 }}"
+                                           name="{{ option.name }}"
                                            value="{{ value | escape }}"
                                            form="product-form-{{ section.id }}"
                                            {% if option.selected_value == value %}checked{% endif %}
@@ -310,14 +310,38 @@
     });
 
     var product = {{ product | json }}
+    var variants = {{ product.variants | json }}
+
+    function contains(arr, items) {
+        return items.every(i => arr.includes(i))
+    }
+    function findId(){
+        var opts =[];
+        $(".optionCheck:checked").each(function() {
+            opts.push($(this).val());
+        });
+        var id = -1
+        if (product.variants){
+            for (var i =0 ;i < product.variants.length ;i++){
+                var v =   product.variants[i];
+                console.log(v);
+                if (v.options.length==opts.length && contains(v.options,opts)){
+                    id =  v.id
+                }
+            }
+        }
+        return id;
+    }
+
     $("#addToCart").click(function (){
-        console.log("---")
+
         var quantity = $("#quantity").val();
+        var id = findId();
         var req = {
             "quantity": quantity,
             "form_type":"product",
             "utf8":"✓",
-            "id":"40925247996094",
+            "id": ""+id,
         };
         $.ajax({
             headers: {
@@ -340,11 +364,12 @@
 
     $("#buynow").click(function(){
         var quantity = $("#quantity").val();
+        var id = findId();
         var req = {
             "quantity": quantity,
             "form_type":"product",
             "utf8":"✓",
-            "id":"40925247996094",
+            "id": ""+id,
         };
         $.ajax({
             headers: {

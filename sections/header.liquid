@@ -1,14 +1,9 @@
 <header class="navbar navbar-expand-lg">
-
   <div class="container">
     <div class="header-topbar">
       <div class="site-tools">
         <ul>
           <li><a href="{%- if customer -%}{{ routes.account_url }}{%- else -%}{{ routes.account_login_url }}{%- endif -%}" title="Login/Sign Up"><i class="material-icons-outlined"> account_circle </i></a></li>
-          <!--
-          <li><a href="wishlist.php"><i class="material-icons-outlined"> favorite_border </i> </a></li>
-          <li><a href="javascript:void(0)" id="customToggleSearch"><i class="material-icons"> search </i></a></li>
-          -->
           <li><a href="javascript:void(0)" id="customToggleCart" data-offcanvas-trigger="off-canvas-right-push"><i class="material-icons-outlined"> shopping_cart </i><i class="cart-number">
                 {{ cart.item_count }}
               </i></a></li>
@@ -21,54 +16,19 @@
                 <ul>
                   <li >
                     <div class="st-list-cart-items">
-                      <div class="st-cart-item">
-                        <div class="st-product-thumb_img"><a href="#"><img src="https://www.24k.com.sg/workz/johnny/mist-valley-shop/v2/images/15.1_small.jpg" alt=""></a></div>
-                        <div class="st-product-detail">
-                          <a class="st-product-title">Pink Rosebuds - 50g / Herbal Tea</a>
-                          <div class="st-product-qty">QTY: 1</div>
-                          <div class="st-product-price">$12.00</div>
+                      {%- for item in cart.items -%}
+                        <div class="st-cart-item">
+                          <div class="st-product-thumb_img"><a href="#"><img src="{{ item.image | img_url: '1500x' }}" alt=""></a></div>
+                          <div class="st-product-detail">
+                            <a class="st-product-title">{{ item.product.title | escape }}</a>
+                            <div class="st-product-qty">QTY: {{ item.quantity }}</div>
+                            <div class="st-product-price">{{ item.final_line_price | money }}</div>
+                          </div>
+                          <div class="st-product_remove">
+                            <a href="javascript:void(0)" class="remove-product"><i class="far fa-trash-alt"></i></a>
+                          </div>
                         </div>
-                        <div class="st-product_remove">
-                          <a href="javascript:void(0)" class="remove-product"><i class="far fa-trash-alt"></i></a>
-                        </div>
-                      </div>
-                      <!-- end item -->
-                      <div class="st-cart-item">
-                        <div class="st-product-thumb_img"><a href="#"><img src="https://www.24k.com.sg/workz/johnny/mist-valley-shop/v2/images/15.1_small.jpg" alt=""></a></div>
-                        <div class="st-product-detail">
-                          <a class="st-product-title">Pink Rosebuds - 50g / Herbal Tea</a>
-                          <div class="st-product-qty">QTY: 1</div>
-                          <div class="st-product-price">$12.00</div>
-                        </div>
-                        <div class="st-product_remove">
-                          <a href="javascript:void(0)" class="remove-product"><i class="far fa-trash-alt"></i></a>
-                        </div>
-                      </div>
-                      <!-- end item -->
-                      <div class="st-cart-item">
-                        <div class="st-product-thumb_img"><a href="#"><img src="https://www.24k.com.sg/workz/johnny/mist-valley-shop/v2/images/15.1_small.jpg" alt=""></a></div>
-                        <div class="st-product-detail">
-                          <a class="st-product-title">Pink Rosebuds - 50g / Herbal Tea</a>
-                          <div class="st-product-qty">QTY: 1</div>
-                          <div class="st-product-price">$12.00</div>
-                        </div>
-                        <div class="st-product_remove">
-                          <a href="javascript:void(0)" class="remove-product"><i class="far fa-trash-alt"></i></a>
-                        </div>
-                      </div>
-                      <!-- end item -->
-                      <div class="st-cart-item">
-                        <div class="st-product-thumb_img"><a href="#"><img src="https://www.24k.com.sg/workz/johnny/mist-valley-shop/v2/images/15.1_small.jpg" alt=""></a></div>
-                        <div class="st-product-detail">
-                          <a class="st-product-title">Pink Rosebuds - 50g / Herbal Tea</a>
-                          <div class="st-product-qty">QTY: 1</div>
-                          <div class="st-product-price">$12.00</div>
-                        </div>
-                        <div class="st-product_remove">
-                          <a href="javascript:void(0)" class="remove-product"><i class="far fa-trash-alt"></i></a>
-                        </div>
-                      </div>
-                      <!-- end item -->
+                      {%- endfor -%}
                     </div>
                   </li>
                   <li>
@@ -84,7 +44,7 @@
                     </div>
                   </li>
                 </ul>
-                
+
                 <span class="material-icons js-offcanvas-close"> close </span>
               </div>
             </div>
@@ -155,20 +115,11 @@
             </li>
           </ul>
         </div>
-        
+
       </div>
     </div>
     <div class="header-body">
-      <!-- Mobile -->
-      <!--
-      <nav id="main-nav-mobile">
-        <ul class="first-nav">
-          {%- for link in section.settings.menu.links -%}
-            <li><a class="nav-link" href="{{ link.url }}"> {{ link.title | escape }}</a></li>
-          {%- endfor -%}
-        </ul>
-      </nav>
-      -->
+
       <nav class="navbar navbar-toggleable-md navbar-dark bg-faded p-0">
         <div class="collapse navbar-collapse" id="nav-left">
           <ul class="nav navbar-nav">
@@ -184,7 +135,7 @@
           </ul>
         </div>
       </nav>
-      
+
     </div>
   </div>
 </header>
@@ -198,30 +149,82 @@
               dataType: 'html',
               success: function (html, status, request) {
                   $("#shopify-section-header").replaceWith(html);
-  $('#main-nav-mobile').hcOffcanvasNav({
-  disableAt: false,
-  navTitle: ' ',
-  labelClose: '',
-  });
-  
-  $('#cartWrapper').hcOffcanvasNav({
-  disableAt: false,
-  customToggle: '#customToggleCart',
-  navTitle: 'Shopping Cart',
-  position: 'right',
-  pushContent:'main',
-  labelClose: '',
-  width: '380',
-  });
+                $( document ).bind( "beforecreate.offcanvas", function( e ){
+                  var dataOffcanvas = $( e.target ).data('offcanvas-component');
+                  console.log(dataOffcanvas);
+                  dataOffcanvas.onInit =  function() {
+                    console.log(this);
+                  };
+                } );
 
-  $('#searchWrapper').hcOffcanvasNav({
-  disableAt: false,
-  customToggle: '#customToggleSearch',
-  navTitle: 'Search',
-  position: 'top',
-  pushContent:'main',
-  labelClose: '',
-  });
+                $( document ).bind( "create.offcanvas", function( e ){
+                  var dataOffcanvas = $( e.target ).data('offcanvas-component');
+                  console.log(dataOffcanvas);
+                  dataOffcanvas.onOpen =  function() {
+                    console.log('Callback onOpen');
+                  };
+                  dataOffcanvas.onClose =  function() {
+                    console.log('Callback onClose');
+                  };
+                });
+
+                $( document ).bind( "clicked.offcanvas-trigger clicked.offcanvas", function( e ){
+                  var dataBtnText = $( e.target ).text();
+                  console.log(e.type + '.' + e.namespace + ': ' + dataBtnText);
+                } );
+
+                $( document ).bind( "open.offcanvas", function( e ){
+                  var dataOffcanvasID = $( e.target ).attr('id');
+                  console.log(e.type + ': #' + dataOffcanvasID);
+                } );
+
+                $( document ).bind( "resizing.offcanvas", function( e ){
+                  var dataOffcanvasID = $( e.target ).attr('id');
+                  console.log(e.type + ': #' + dataOffcanvasID);
+                } );
+
+                $( document ).bind( "close.offcanvas", function( e ){
+                  var dataOffcanvasID = $( e.target ).attr('id');
+                  console.log(e.type + ': #' + dataOffcanvasID);
+                } );
+
+                $( '.js-open' ).bind( "create.offcanvas", function( e ){
+                  var dataOffcanvas = $(this).data('offcanvas-component');
+                  setTimeout(function(){
+                    //dataOffcanvas.open();
+                  }, 200);
+                } );
+
+                $( document ).bind( "beforecreate.offcanvas", function( e ){
+                  var $offcanvas = $( e.target ),
+                          api = $offcanvas.data('offcanvas-component');
+
+
+
+                  function onFocusIn() {
+                    console.log('onFocusIn');
+                    api.options.resize = false;
+                    console.log(api.options.resize);
+                    $(window).off('resize.offcanvas orientationchange.offcanvas');
+                  }
+
+                  function onFocusOut() {
+                    console.log('onFocusOut');
+                    api.options.resize = true;
+                    console.log(api.options.resize);
+                    $(window).on('resize.offcanvas orientationchange.offcanvas');
+                    api.resize();
+                  }
+
+                  $offcanvas.on('focusin', 'input,textarea', onFocusIn)
+                          .on('focusout', 'input,textarea', onFocusOut);
+                });
+
+
+                // Trigger Enhance
+                $( document ).trigger( "enhance" );
+
+
               },
               error: function (xhr, ajaxOptions, thrownError) {
 
