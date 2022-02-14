@@ -87,9 +87,9 @@
     },
     customer: {% if customer %}{id: {{customer.id}}, tags: {{customer.tags | json}}}{% else %}false{% endif %},
     selector: {
-      sortBy: '.collection-sorting',
+      sortBy: '.list-products-header',
       pagination: '.pagination:first, .paginate:first, .pagination-custom:first, #pagination:first, #gf_pagination_wrap',
-      products: '.grid.grid-collage'
+      products: '.list-index-products'
     }
   };
 
