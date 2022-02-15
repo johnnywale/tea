@@ -104,7 +104,7 @@ a:focus {
 /******************************************************************************************
 + Header
 *******************************************************************************************/
-header.navbar {position: absolute; left: 0; right: 0; top: 0; z-index: 2; height: 90px; background-position: center; background-size: cover;}
+header.navbar {position: absolute; left: 0; right: 0; top: 0; z-index: 3; height: 90px; background-position: center; background-size: cover;}
 .navbar-dark .navbar-nav .nav-link, .header-topbar .site-tools a, .header-topbar .site-tools.search-wrapper span {color:#fff}
 header nav {width: 100%}
 header .container {flex-direction: column;}
@@ -531,6 +531,7 @@ a.btn-update {background-color: #898b8e; color: #fff}
 .post-footer {display: flex; justify-content: space-between;}
 form .form__message {max-width: 300px; margin: 20px auto 30px; text-align: center;}
 .shopify-challenge__container {padding:4em 0;}
+
 /******************************************************************************************
 + Plugin
 *******************************************************************************************/
@@ -630,6 +631,36 @@ main>section:first-child {padding-top: 0;}
 main section.shopify-section:first-child{padding-bottom: 0; padding-top: 0;}
 main section.shopify-section .subpage.products{padding-bottom: 0;}
 main section.shopify-section+section.shopify-section {padding-top: 0; padding-bottom: 0;}
+
+/** App - Megamenu **/
+header.shrink .navbar-brand img {max-height: 55px;}
+#GloboDesktopMenu {margin-left: 2em;}
+.gm-menu-installed header .gm-menu .gm-item.gm-level-0 > .gm-target, .gm-menu-installed header .gm-menu {background-color: transparent !important; }
+.gm-menu-installed header .gm-menu.gm-bordered:not(.gm-menu-mobile) .gm-item, .gm-menu-installed header .gm-menu.gm-bordered:not(.gm-menu-mobile) > .gm-level-0 + .gm-level-0 {border:none !important;}
+.gm-menu-installed header.shrink .gm-menu .gm-item.gm-level-0 > .gm-target > .gm-text, .gm-menu-installed header.shrink .gm-menu .gm-item.gm-level-0 > .gm-target > .gm-retractor {color: #333 !important;}
+.gm-menu-installed header .gm-menu .gm-item.gm-level-0 > .gm-target:hover, .gm-menu-installed header.shrink .gm-menu .gm-item.gm-level-0.gm-active > .gm-target, .gm-menu-installed .gm-menu .gm-item.gm-level-0:hover > .gm-target {background-color: var(--main-color) !important; }
+.gm-menu-installed header.shrink .gm-menu .gm-item.gm-level-0 > .gm-target:hover>span, .gm-menu-installed header.shrink .gm-menu .gm-item.gm-level-0.gm-active > .gm-target>span, .gm-menu-installed header.shrink .gm-menu .gm-item.gm-level-0:hover > .gm-target>span{color: #fff !important}
+.gm-menu-installed .gm-menu .gm-submenu.gm-mega {box-shadow: 1px 1px 25px rgba(0,0,0,0.13)}
+#GloboDesktopMenu .gm-submenu-align-full>.gm-submenu, #GloboDesktopMenu .gm-submenu-align-full .gm-submenu.gm-dropdown {min-width: 1170px;}
+.gm-menu-installed header .gm-menu .gm-submenu .gm-item .gm-heading .gm-target {color: var(--main-color) !important; text-transform: inherit; margin-bottom: 5px; padding-bottom: 0; font-size: 1.65em !important; font-weight: 300 !important}
+.gm-menu-installed header .gm-products-carousel .gm-heading {border-bottom: none !important}
+/** App - Sidebar Filter Menu **/
+.gf-left .is-collapsed .gf-block-content {display: block;}
+.gf-block-title h3 {cursor: default; color: var(--main-color) !important; text-transform: inherit; margin-bottom: 5px; padding-bottom: 0; font-size: 1.65em; font-weight: 300}
+.gf-block-title h3 span {color: inherit;}
+.gf-option-block {border:none ;}
+.gf-left .gf-option-block .gf-block-title h3:after {display: none;}
+#gf-tree .globo-selected-items-wrapper .selected-item strong {line-height: inherit;}
+#gf-tree .noUi-handle {background-color:var(--main-color);}
+#gf-tree .noUi-connect {background-color: #aaa}
+span.spf-product__label.spf-product__label-sale {background-color: var(--sec-color);}
+.h4.spf-product-card__title a {font-size: 0.78em; color: #333; font-weight: 300; margin-top: 3px; display: inline-block;}
+.spf-product__info {text-align: center !important;}
+.spf-product-card__vendor {display: none !important}
+.spf-product-card__price.money {font-size: 1.3em}
+@media (min-width:992px) {
+  #gf-grid {padding-left: 4.5rem !important}
+}
 /******************************************************************************************
    + Preloader
 *******************************************************************************************/
