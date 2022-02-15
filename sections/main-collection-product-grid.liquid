@@ -64,19 +64,31 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-8 col-lg-10 pl-xl-5">
+
+                    </div>
+                    <div class="col-md-12">
                         <div class="list-products2 mt-2">
                             <div class="list-products-header d-flex justify-content-md-end">
                                 {%- assign sort_by = collection.sort_by | default: collection.default_sort_by -%}
+                                <!--
                                 <select name="" id="sortBy" class="form-control select-control" style="width: 200px;">
                                     {%- for option in collection.sort_options -%}
                                         <option {% if option.value == sort_by %} selected  {% endif %}
                                                 value="{{ option.value }}"> {{ option.name | escape }}</option>
                                     {%- endfor -%}
                                 </select>
+                                -->
                             </div>
                         </div>
+
+
+
+
                         <div class="list-products-body">
+
+                            <div id="gf-controls-container"></div>
+
+
                              {%- paginate collection.products by section.settings.products_per_page -%}
                             <div class="list-index-products">
                                 {%- for product in collection.products -%}
@@ -109,7 +121,7 @@
                                 {%- endfor -%}
                             </div>
 
-                                 {%- if paginate.pages > 1 -%}
+                                 {%- if paginate.pages > 100 -%}
                                      {% render 'pagination', paginate: paginate, anchor: '' %}
                                  {%- endif -%}
 

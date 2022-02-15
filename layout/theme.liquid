@@ -30,6 +30,7 @@
     {% render 'meta-tags' %}
 
     <script src="{{ 'global.js' | asset_url }}" defer="defer"></script>
+    {% include 'globo.filter.script' %}
 
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.3/css/bootstrap.min.css" />
@@ -82,8 +83,9 @@
     .c-offcanvas--right {width: 27em;}
     .c-offcanvas-bg.c-offcanvas-bg--push.c-offcanvas-bg--right.is-open {transform: translate3d(-27em,0,0)}
     .c-offcanvas-bg.is-animating, .c-offcanvas-bg.is-open {background-color: rgba(0,0,0,.4)}
-    .header-topbar #cartWrapper ul li {margin-left: 0;}
-    .header-topbar #cartWrapper li a {color: #333;}
+    #cartWrapper ul {list-style: none; padding:0;}
+    #cartWrapper ul li {margin-left: 0;}
+    #cartWrapper li a {color: #333;}
     #cartWrapper .nav-title {padding:15px;}
     #main-nav-mobile a {color: #333;}
 
@@ -107,7 +109,6 @@
     }
     </style>
   </head>
-  {{ content_for_header }}
   <body>
 
     <div id="preloader"></div>
@@ -153,3 +154,5 @@
     {%- endif -%}
   </body>
 </html>
+{% include 'globo.menu.script' %}
+{% include 'globo.filter.action' %}

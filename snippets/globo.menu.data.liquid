@@ -1,0 +1,14 @@
+{%- assign primary_locale = 'null' -%}
+{%- for locale in shop.published_locales -%}{%- if locale.primary -%}{%- assign primary_locale = locale.iso_code | json -%}{%- endif -%}{%- endfor -%}
+<script type="text/javascript">
+  window.GloboMenuConfig = window.GloboMenuConfig || {}
+  window.GloboMenuConfig.hasCarousel = {% if items contains 'carousel' %}true{% else %}false{% endif %};
+  window.GloboMenuConfig.products = window.GloboMenuConfig.products || {};
+  window.GloboMenuConfig.collections = window.GloboMenuConfig.collections || {};
+  window.GloboMenuConfig.pages = window.GloboMenuConfig.pages || {};
+  window.GloboMenuConfig.curLocale = {{request.locale.iso_code | json}};
+  window.GloboMenuConfig.GloboMenuLocale = {{request.locale.iso_code | json}};
+  window.GloboMenuConfig.locale = {{primary_locale}};
+  window.GloboMenuConfig.isMultiCurrency  = true;
+  window.GloboMenuConfig.GloboMenuMissingProducts = [];
+  window.GloboMenuConfig.items[1]['submenu']['items'][0]['submenu']['items'][0]['submenu']['items'][1].products = [{%- for product in collections['black-tea'].products limit: 4 -%}{%- unless forloop.first  -%},{%- endunless -%}{{product | json}}{%- endfor -%}];window.GloboMenuConfig.items[1]['submenu']['items'][0]['submenu']['items'][1]['submenu']['items'][1].products = [{%- for product in collections['frontpage'].products limit: 4 -%}{%- unless forloop.first  -%},{%- endunless -%}{{product | json}}{%- endfor -%}];window.GloboMenuConfig.items[1]['submenu']['items'][0]['submenu']['items'][2]['submenu']['items'][1].products = [{%- for product in collections['white-tea'].products limit: 4 -%}{%- unless forloop.first  -%},{%- endunless -%}{{product | json}}{%- endfor -%}];window.GloboMenuConfig.items[1]['submenu']['items'][0]['submenu']['items'][3]['submenu']['items'][1].products = [{%- for product in collections['flavoured-tea'].products limit: 4 -%}{%- unless forloop.first  -%},{%- endunless -%}{{product | json}}{%- endfor -%}];window.GloboMenuConfig.items[1]['submenu']['items'][0]['submenu']['items'][4]['submenu']['items'][1].products = [{%- for product in collections['herbal-infusions'].products limit: 4 -%}{%- unless forloop.first  -%},{%- endunless -%}{{product | json}}{%- endfor -%}];window.GloboMenuConfig.items[3]['submenu']['items'][0].products = [{%- for product in collections['best-selling-collection'].products limit: 4 -%}{%- unless forloop.first  -%},{%- endunless -%}{{product | json}}{%- endfor -%}];window.GloboMenuConfig.pages['about-us'] = {handle:{{-pages['about-us'].handle | json-}},title:{{-pages['about-us'].title | json-}}};window.GloboMenuConfig.pages['contact'] = {handle:{{-pages['contact'].handle | json-}},title:{{-pages['contact'].title | json-}}};</script>
