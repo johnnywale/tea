@@ -30,8 +30,12 @@ header .btn-yellow:focus {
    + Mobile & Tablet Portrait
 *******************************************************************************************/
 @media (max-width: 991px) {
-.header-topbar {bottom: -47px; right: 52px;}
+.header-topbar {height:0;bottom: -70px; /**right: 52px; **/}
 .index-header>.container {align-items: flex-end;}
+header.shrink .header-topbar {bottom: -33px;}
+header.shrink .header-topbar .site-tools li a {color: var(--main-color);}
+header.shrink .header-topbar .hamburger-menu .menu-item {background:var(--main-color);}
+header.shrink #customToggleCart .cart-number {color: #fff}
 header.navbar {height: auto; border:none;}
 .header-topbar.for-mobile {display: flex; justify-content: flex-start; align-items: flex-start; bottom: 0; transform: none; flex-wrap: wrap}
 .header-topbar.for-mobile .site-tools + .site-tools {margin-left: 0}
@@ -171,6 +175,7 @@ footer .row:last-child .flex-item.d-flex {justify-content: flex-end}
    + Desktop (to exclude ipad landscape)
 *******************************************************************************************/
 @media screen and (min-width: 1025px) {
+  header.shrink .header-topbar {display: none;}
   .container {max-width: 95vw;}
   .navbar-expand-lg .navbar-nav .dropdown-toggle:after {content: ''; background-color: transparent; height: 17px; width: 100%; display: block; border-radius: 0; position: absolute; left: 0; right: 0; border:none;}
   .navbar-dark .navbar-nav .nav-link {font-weight: 400; }
