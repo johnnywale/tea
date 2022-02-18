@@ -7,7 +7,7 @@
   window.GloboMenuCustomer = {% if customer %}true{% else %}false{% endif %};
   window.assetsUrl = '{{ assets_url[0] }}';
   window.filesUrl = '{{ files_url[0] }}';
-  window.GloboMenuSignature = '8526f7de1cd147363ff15cd39e823a2b';
+  window.GloboMenuSignature = '41d5ac9f7e611ea6659d85d4bb18989f';
   window.GloboMenuTimestamp = 1643279172;
   window.hasMegamenu  = true;
   window.gmml = false;
@@ -16,7 +16,7 @@
   };
   window.menuRootUrl = "{%- if routes.root_url != "/" -%}{{ routes.root_url }}{%- endif -%}";
 </script>
-<script src="{{ 'globo.menu.items-3.js' | asset_url }}"></script>
+<script src="{{ 'globo.menu.items-2.js' | asset_url }}"></script>
 {% render 'globo.menu.data' %}
 <script defer src="{{ 'globo.menu.app.js' | asset_url }}"></script>
 <link rel="preload stylesheet" href="{{ 'globo.menu.css' | asset_url }}" as="style">
