@@ -631,6 +631,8 @@ main>section:first-child {padding-top: 0;}
 main section.shopify-section:first-child{padding-bottom: 0; padding-top: 0;}
 main section.shopify-section .subpage.products{padding-bottom: 0;}
 main section.shopify-section+section.shopify-section {padding-top: 0; padding-bottom: 0;}
+ul.custom-list li:before {content: ''; background-image: url('https://www.teamistvalley.com/resources/front/template/valley/images/icon-custom-list.png'); background-size: 18px 22px; display: block; position: absolute; top: 2px; left: -20px; width: 18px; height: 22px;}
+
 
 /** App - Megamenu **/
 header.shrink .navbar-brand img {max-height: 55px;}
