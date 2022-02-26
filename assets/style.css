@@ -659,7 +659,7 @@ header.shrink .navbar-brand img {max-height: 55px;}
 
 @media (min-width:992px) {
   header .container {flex-direction: row}
-  .header-topbar {order:2;}
+  #shopify-section-header {order:2; display: flex;}
   #GloboMobileMenu, .header-topbar ul li:last-child {display: none;}
   #GloboDesktopMenu {display: flex}
 }
