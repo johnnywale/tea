@@ -73,7 +73,7 @@
               <div class="cart-total flex-column">
                 <div class="d-flex flex-item">
                   <div class="column-left">Totals</div>
-                  <div class="column-right">$72.00</div>
+                  <div class="column-right">{{ cart.total_price | money_with_currency }}</div>
                 </div>
                 <div class="d-flex flex-item">
                   <div class="column-left">Shipping</div>

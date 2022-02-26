@@ -130,10 +130,10 @@
                     <div class="st-cart-summary">
                       <div class="st-cart-preview">
                         <div class="a-item">Total: </div>
-                        <div class="a-item">$64.00 </div>
+                        <div class="a-item">{{ cart.total_price | money_with_currency }} </div>
                       </div>
                       <div class="st-cart-actions">
-                        <a class="btn btn-site" href="cart.php">View Cart</a>
+                        <a class="btn btn-site" href="/cart">View Cart</a>
                         <a class="btn btn-site" href="checkout.php">Check Out</a>
                       </div>
                     </div>
