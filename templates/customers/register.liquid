@@ -1,53 +1,53 @@
-<section class="has-bg p-0 d-flex main-hero" style="background-image: url(https://www.24k.com.sg/workz/johnny/mist-valley-shop/v2/images/hero-cart.jpg);">
+<style>
+form .form__message {max-width: none; margin: 6px 0; text-align: left; display: block; color: var(--main-color); width: 100%;}
+form .form__message>svg{display:none}
+</style>
+
+<section
+  class="has-bg p-0 d-flex main-hero"
+  style="background-image: url(https://www.24k.com.sg/workz/johnny/mist-valley-shop/v2/images/hero-cart.jpg)">
   <div class="caption-holder">
     <h2>{{ 'customer.account.title' | t }}</h2>
   </div>
 </section>
 
-
-
 <section class="subpage pb-0">
   <figure class="subsection">
     <div class="container">
-      <div class="section-body mx-auto" style="max-width: 900px;">
+      <div class="section-body mx-auto" style="max-width: 900px">
         <div class="form-area">
           {%- form 'create_customer', novalidate: 'novalidate' -%}
-            <ul>
-              {%- for field in form.errors -%}
-                <li>
-                  {%- if field == 'form' -%}
-                    {{ form.errors.messages[field] }}
-                  {%- else -%}
-                    <a href="#RegisterForm-{{ field }}">
-                      {{ form.errors.translated_fields[field] | capitalize }}
-                      {{ form.errors.messages[field] }}
-                    </a>
-                  {%- endif -%}
-                </li>
-              {%- endfor -%}
-            </ul>
-            <div class="row">
-              <div class="col-md-6">
-                <div class="form-group">
-                  <label for="">First Name</label>
-                  <input type="text"  name="customer[first_name]"  class="form-control" placeholder="">
-                </div>
-              </div>
-              <div class="col-md-6">
-                <div class="form-group">
-                  <label for="">Last Name</label>
-                  <input type="text"  name="customer[last_name]" class="form-control" placeholder="">
-                </div>
+          <ul>
+            {%- for field in form.errors -%}
+            <li>
+              {%- if field == 'form' -%} {{ form.errors.messages[field] }} {%- else -%}
+              <a href="#RegisterForm-{{ field }}"> {{ form.errors.translated_fields[field] | capitalize }} {{ form.errors.messages[field] }} </a>
+              {%- endif -%}
+            </li>
+            {%- endfor -%}
+          </ul>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="">First Name</label>
+                <input type="text" name="customer[first_name]" class="form-control" placeholder="" />
               </div>
             </div>
-            <div class="row">
-              <div class="col-md-6">
-                <div class="form-group">
-                  <label for="">Password</label>
-                  <input  name="customer[password]" type="password" class="form-control" placeholder="">
-                </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="">Last Name</label>
+                <input type="text" name="customer[last_name]" class="form-control" placeholder="" />
               </div>
-              <!--
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="">Password</label>
+                <input name="customer[password]" type="password" class="form-control" placeholder="" />
+              </div>
+            </div>
+            <!--
               <div class="col-md-6">
                 <div class="form-group">
                   <label for="">Confirm Password</label>
@@ -55,90 +55,62 @@
                 </div>
               </div>
               -->
-            </div>
-            <div class="row">
-              <div class="col-md-6">
-                <div class="form-group">
-                  <label for="">Company Name</label>
-                  <input name="customer[note][companyName]" type="text" class="form-control" placeholder="">
-                </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="">Company Name</label>
+                <input name="customer[note][companyName]" type="text" class="form-control" placeholder="" />
               </div>
-              <div class="col-md-6">
-                <div class="form-group">
-
-                  <label for="">Email Address</label>
-                  <input  name="customer[email]" type="text" class="form-control" placeholder="">
-                </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="">Email Address</label>
+                <input name="customer[email]" type="text" class="form-control" placeholder="" />
               </div>
               {%- if form.errors contains 'email' -%}
-                <span id="RegisterForm-email-error" class="form__message">
-        <svg aria-hidden="true" focusable="false" role="presentation">
-          <use href="#icon-error" />
-        </svg>
-        {{ form.errors.translated_fields['email'] | capitalize }} {{ form.errors.messages['email'] }}.
-      </span>
-              {%- endif -%}
+            <span id="RegisterForm-email-error" class="form__message">
+              <svg aria-hidden="true" focusable="false" role="presentation">
+                <use href="#icon-error" />
+              </svg>
+              {{ form.errors.translated_fields['email'] | capitalize }} {{ form.errors.messages['email'] }}.
+            </span>
+            {%- endif -%}
             </div>
-            <div class="row">
-              <div class="col-md-6">
-                <div class="form-group">
-                  <label for="">Phone Number</label>
-                  <input name="customer[note][phone]" type="text" class="form-control" placeholder="">
-                </div>
-              </div>
-              <div class="col-md-6">
-                <div class="form-group">
-                  <label for="">Gender</label>
-                  <select name="customer[note][gender]" id="" class="form-control">
-                    <option value="" disabled="" selected="">-- Select Gender --</option>
-                    <option value="Male">Male</option>
-                    <option value="Female">Female</option>
-                  </select>
-                </div>
+            
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="">Phone Number</label>
+                <input name="customer[note][phone]" type="text" class="form-control" placeholder="" />
               </div>
             </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="">Gender</label>
+                <select name="customer[note][gender]" id="" class="form-control">
+                  <option value="" disabled="" selected="">-- Select Gender --</option>
+                  <option value="Male">Male</option>
+                  <option value="Female">Female</option>
+                </select>
+              </div>
+            </div>
+          </div>
 
-            <div class="form-group mb-4 form-check">
-              <input type="checkbox" class="form-check-input" id="terms" name="term">
-              <label class="form-check-label" for="terms">I have read and agree to the <a href="javascript:void(0)" target="_blank">terms and conditions</a></label>
-            </div>
-            <div class="form-group mt-5">
-              <button>
-                {{ 'customer.register.submit' | t }}
-              </button>
-            </div>
+          <div class="form-group mb-4 form-check">
+            <input type="checkbox" class="form-check-input" id="terms" name="term" />
+            <label class="form-check-label" for="terms" required="">I have read and agree to the <a href="/pages/general-terms-conditions" target="_blank">terms and conditions</a></label
+            >
+          </div>
+          <div class="form-group mt-5">
+            <button class="btn btn-site">{{ 'customer.register.submit' | t }}</button>
+          </div>
 
           {%- endform -%}
-
-
         </div>
       </div>
     </div>
   </figure>
-  <figure class="subsection mainsec-subscribe pt-5">
-    <div class="container">
-      <div class="section-body">
-        <div class="subscribe-box">
-          <div class="img-holder" style="background-image: url(images/bg-subscribe-box.jpg);"></div>
-          <div class="caption-holder">
-            <h2 class="mb-2">Subscribe Our Newsletter</h2>
-            <p>Sign up for our newsletter</p>
-            <form action="" class="form-subscribe">
-              <div class="input-group mb-3">
-                <input type="email" class="form-control" placeholder="Email Address" aria-label="Email Address" aria-describedby="button-addon2">
-                <div class="input-group-append">
-                  <button class="btn btn-site" type="button" id="button-addon2">SIGNUP</button>
-                </div>
-              </div>
-            </form>
-          </div>
-        </div>
-      </div>
-    </div>
-  </figure>
-  <figure class="subsection has-parallax has-bg mb-0" style="background-image: url(images/bg-footer-parallax-1.jpg);"></figure>
 </section>
-<script>
-
-
-</script>
+<script></script>
