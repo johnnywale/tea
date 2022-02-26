@@ -5,7 +5,7 @@
         </div>
         <div class="section-body mt-4">
             <div class="list-index-products">
-                {% assign best_sell = collections['all'].products | sort : 'best-selling' | slice: 1, 12 %}
+                {% assign best_sell = collections['all'].products | sort : 'best-selling' | slice: 1, 8 %}
                 {% for product in best_sell%}
                     <div class="item">
                         <div class="img-holder">

@@ -10,7 +10,7 @@
                 {% if forloop.index == 1 %}
                   <div class="col-md-6">
                 <div class="flex-item fea">
-                    <a href="{{ article.url }}" class="img-holder" style="background-image: url( {{ article.image | img_url }}); ">
+                    <a href="{{ article.url }}" class="img-holder" style="background-image: url( {{ article.image | img_url : '3000x'  }}); ">
                         <div class="caption-holder">
                             <div class="post-header">
                                 <div class="post-date">{{- article.published_at | time_tag: format: 'date' -}}</div>
@@ -40,7 +40,7 @@
                 {% if forloop.index == 2 %}
 
                 <div class="flex-item">
-                    <a href="{{ article.url }}" class="img-holder" style="background-image: url({{ article.image | img_url }});"></a>
+                    <a href="{{ article.url }}" class="img-holder" style="background-image: url({{ article.image | img_url : '3000x' }});"></a>
                     <div class="caption-holder">
                         <div class="post-header">
                             <div class="post-date">{{- article.published_at | time_tag: format: 'date' -}}</div>
@@ -62,7 +62,7 @@
                 {% endif %}
             {% if forloop.index == 3 %}
                 <div class="flex-item">
-                    <a href="{{ article.url }}" class="img-holder" style="background-image: url({{ article.image | img_url }});"></a>
+                    <a href="{{ article.url }}" class="img-holder" style="background-image: url({{ article.image  | img_url: '3000x'  }});"></a>
                     <div class="caption-holder">
                         <div class="post-header">
                             <div class="post-date">{{- article.published_at | time_tag: format: 'date' -}}</div>
