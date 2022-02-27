@@ -186,7 +186,9 @@
             color: #333;
         }
 
-        #cartWrapper li .st-cart-actions a {color: #fff}
+        #cartWrapper li .st-cart-actions a {
+            color: #fff
+        }
 
         #cartWrapper .nav-title {
             padding: 15px;
@@ -255,6 +257,15 @@
         {{ content_for_layout }}
     </div>
 </main>
+<aside class="js-offcanvas" data-offcanvas-options='{"modifiers":"right,push"}' id="off-canvas-right-push" role="complementary">
+    <div class="c-offcanvas__inner o-box u-pos-relative">
+        <div class="site-tools" id="cartWrapper" class="p-5">
+            {% section 'shopping-cart' %}
+        </div>
+    </div>
+</aside>
+
+
 
 {% section 'footer' %}
 
@@ -291,20 +302,16 @@
 {%- endif -%}
 
 <script>
-    function update_item() {
-
+    function update_item(line, quantity, container) {
+        let ct = "shopify-section-template--15405978288318__cart-items"
         const content = {
-            "line": "1",
-            "quantity": "2",
+            "line": line,
+            "quantity": quantity,
             "sections": [
-                "template--15023874670782__cart-items",
-                "cart-icon-bubble",
-                "cart-live-region-text",
-                "template--15023874670782__cart-footer"
+                ct
             ],
             "sections_url": "/cart"
         };
-
         $.ajax({
             headers: {
                 Accept: "application/javascript",
@@ -314,8 +321,23 @@
             contentType: "application/json",
             data: JSON.stringify(content),
             datatype: "json",
-            success: function (data) {
-
+            success: function (req) {
+                if (quantity==0){
+                    window.location.reload()
+                }
+                let data = JSON.parse(req)
+                for (var i = 0; i < data.items.length; i++) {
+                    var item = data.items[i];
+                    var selector = ".item-line"+(i+1)+"_quantity"
+                    $(selector).val(item.quantity)
+                    $(selector).html(item.quantity)
+                    var final_price = data.items[i].line_price
+                    var selector = ".item-final-line"+(i+1)+"_price"
+                    console.log(selector)
+                    $(selector).text('$'+final_price/100)
+                }
+                $(".cart-total-price").html('$'+data.total_price/100 + ' USD')
+                $(".cart-number").text(data.item_count)
 
             }
         });

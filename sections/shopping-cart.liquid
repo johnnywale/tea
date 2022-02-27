@@ -1,0 +1,37 @@
+
+
+<h2 class="nav-title">Shopping Cart</h2>
+<ul>
+    <li >
+        <div class="st-list-cart-items">
+            {%- for item in cart.items -%}
+                <div class="st-cart-item">
+                    <div class="st-product-thumb_img"><a href="#"><img src="{{ item.image | img_url: '1500x' }}" alt=""></a></div>
+                    <div class="st-product-detail">
+                        <a class="st-product-title">{{ item.product.title | escape }}</a>
+                        <div   class="item-line{{ item.index | plus: 1 }}_quantity st-product-qty">QTY: {{ item.quantity }}</div>
+                        <div   class="st-product-price">{{ item.final_line_price | money }}</div>
+                    </div>
+                    <div class="st-product_remove">
+                        <a href="javascript:void(0)" class="remove-product"><i class="far fa-trash-alt"></i></a>
+                    </div>
+                </div>
+            {%- endfor -%}
+        </div>
+    </li>
+    <li>
+        <div class="st-cart-summary">
+            <div class="st-cart-preview">
+                <div class="a-item">Total: </div>
+                <div class="a-item cart-total-price">{{ cart.total_price | money_with_currency }} </div>
+                    <input id="check_total_count" type="hidden" value="{{ cart.item_count }}">
+            </div>
+            <div class="st-cart-actions">
+                <a class="btn btn-site" href="/cart">View Cart</a>
+                <a class="btn btn-site" href="checkout.php">Check Out</a>
+            </div>
+        </div>
+    </li>
+</ul>
+
+<span class="material-icons js-offcanvas-close"> close </span>

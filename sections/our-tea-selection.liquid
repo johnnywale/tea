@@ -5,7 +5,9 @@
         </div>
         <div class="section-body mt-5">
             <div class="list-style-tea-selection d-flex">
+                {% assign allowed = "Black Tea,Green Tea,Herbal Infusions,White Tea,Flavoured Tea" | split: ',' %}
                 {%- for collection in collections -%}
+                {% if allowed contains collection.title %}
                     <div class="flex-item">
                         <a href="{{ collection.url }}">
                             <div class="img-holder"><img src="{{ collection.featured_image | img_url }}" alt=""></div>
@@ -13,6 +15,7 @@
                         </a>
                         <a href="{{ collection.url }}" class="btn btn-site sec btn-block">Learn more</a>
                     </div>
+                    {% endif %}
                 {%- endfor -%}
             </div>
         </div>
