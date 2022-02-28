@@ -394,9 +394,10 @@ table.spec-table td, table.spec-table th {border-color: #fff}
 .list-style-img-button .flex-item {display: block; background-color: #f5f5f5; text-align: center;}
 .list-style-img-button .caption-holder {padding:30px 20px 15px; color: #333; font-size: 1.4em; font-weight: 300;}
 .list-style-img-button .img-holder {padding:15px 20px 30px;}
+.list-style-tea-selection {margin-left: 2%; margin-right: 2%;}
 .list-style-img-button .flex-item:hover+.btn {background-color: var(--sec-color)}
 .list-style-img-button .flex-item:hover .caption-holder {color: var(--sec-color)}
-.list-style-tea-selection .flex-item {flex-basis: 16.66%; text-align: center;}
+.list-style-tea-selection .flex-item {flex-basis: 20%; text-align: center;}
 .list-style-tea-selection .flex-item+.flex-item {margin-left: -1px;}
 .list-style-tea-selection .flex-item>a {display: block; padding:20px;}
 .list-style-tea-selection .img-holder {padding:20px 15px 10px;}
@@ -531,7 +532,8 @@ a.btn-update {background-color: #898b8e; color: #fff}
 .post-footer {display: flex; justify-content: space-between;}
 form .form__message {max-width: 300px; margin: 20px auto 30px; text-align: center;}
 .shopify-challenge__container {padding:4em 0;}
-
+#RecoverEmail-email-error svg {display: none}
+#RecoverEmail-email-error {font-size: 1.4em; color: var(--main-color); font-weight: 500;}
 /******************************************************************************************
 + Plugin
 *******************************************************************************************/
