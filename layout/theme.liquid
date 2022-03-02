@@ -302,6 +302,10 @@
 {%- endif -%}
 
 <script>
+
+
+
+
     function update_item(line, quantity, container) {
         let ct = "shopify-section-template--15405978288318__cart-items"
         const content = {
@@ -343,9 +347,15 @@
         });
     }
 
+    $("#checkout,.checkout").click(function () {
+        console.log("---")
+        $("#checkoutform").submit();
+    });
 </script>
 
-
+<form id="checkoutform" method="post" action="/cart">
+    <input type="hidden" name="checkout" value="">
+</form>
 </body>
 </html>
 {% include 'globo.menu.script' %}

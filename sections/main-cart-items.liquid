@@ -351,9 +351,7 @@
     <figure class="subsection has-parallax has-bg mb-0"
             style="background-image: url(images/bg-footer-parallax-1.jpg);"></figure>
 </section>
-<form id="checkoutform" method="post" action="/cart">
-    <input type="hidden" name="checkout" value="">
-</form>
+
 <script>
 
     $(document).on("click", ".remove-item", function () {
@@ -373,9 +371,6 @@
     //
 
 
-    $("#checkout .checkout").click(function () {
-        $("#checkoutform").submit();
-    });
 
 
     $('.add').click(function () {

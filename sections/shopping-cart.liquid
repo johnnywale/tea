@@ -5,7 +5,7 @@
     <li >
         <div class="st-list-cart-items">
             {%- for item in cart.items -%}
-                <div class="st-cart-item">
+                <div  idx="{{ item.index | plus: 1 }}"  class="cart-item st-cart-item">
                     <div class="st-product-thumb_img"><a href="#"><img src="{{ item.image | img_url: '1500x' }}" alt=""></a></div>
                     <div class="st-product-detail">
                         <a class="st-product-title">{{ item.product.title | escape }}</a>
@@ -13,7 +13,7 @@
                         <div   class="st-product-price">{{ item.final_line_price | money }}</div>
                     </div>
                     <div class="st-product_remove">
-                        <a href="javascript:void(0)" class="remove-product"><i class="far fa-trash-alt"></i></a>
+                        <a href="javascript:void(0)" class="remove-item remove-product"><i class="far fa-trash-alt"></i></a>
                     </div>
                 </div>
             {%- endfor -%}
@@ -28,7 +28,7 @@
             </div>
             <div class="st-cart-actions">
                 <a class="btn btn-site" href="/cart">View Cart</a>
-                <a class="btn btn-site" href="checkout.php">Check Out</a>
+                <a class="btn btn-site checkout" href="javascript:void(-1)">Check Out</a>
             </div>
         </div>
     </li>
