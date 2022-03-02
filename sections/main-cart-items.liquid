@@ -354,10 +354,6 @@
 
 <script>
 
-    $(document).on("click", ".remove-item", function () {
-        let line = $(this).parents(".cart-item:first").attr("idx")
-        update_item(line, 0,"cart-table")
-    })
 
     $(document).on("change", ".item_count", function () {
         let line = $(this).parents(".cart-item:first").attr("idx")
