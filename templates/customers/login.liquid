@@ -86,8 +86,14 @@
   </figure>
 </section>
 
-
-<script>
+<script type="text/javascript">
+  $(document).ready(function() {
+    if (window.location.href.indexOf("recover") > -1) {
+      $('.form-login-wrapper').hide();
+      $('.form-forgot-password-wrapper').show();
+    }
+  });
+  
 $('.btn-forgot-password').click(function (e){
   $('.form-login-wrapper').hide();
   $('.form-forgot-password-wrapper').show();
