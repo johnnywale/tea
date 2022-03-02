@@ -348,9 +348,14 @@
     }
 
     $("#checkout,.checkout").click(function () {
-        console.log("---")
         $("#checkoutform").submit();
     });
+
+    $(document).on("click", ".remove-item", function () {
+        let line = $(this).parents(".cart-item:first").attr("idx")
+        update_item(line, 0,"cart-table")
+    })
+
 </script>
 
 <form id="checkoutform" method="post" action="/cart">
