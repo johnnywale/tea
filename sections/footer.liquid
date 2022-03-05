@@ -9,14 +9,28 @@
         <div class="caption-holder">
           <h2 class="mb-2">Subscribe</h2>
           <p>Sign up for our newsletter</p>
-          <form action="" class="form-subscribe">
+
+          {% form 'customer', class: 'form-subscribe' %}
             <div class="input-group mb-3">
-              <input type="email" class="form-control" placeholder="Email Address" aria-label="Email Address" aria-describedby="button-addon2">
+              <input type="hidden" name="contact[tags]" value="newsletter">
+              <input type="email" class="form-control" name="contact[email]" placeholder="Email Address" aria-label="Email Address" aria-describedby="button-addon2">
               <div class="input-group-append">
-                <button class="btn btn-site" type="button" id="button-addon2">SIGNUP</button>
-              </div>
-            </div>
-          </form>
+
+                <button type="submit" class="newsletter-form__button field__button" name="commit" id="Subscribe" aria-label="{{ 'newsletter.button_label' | t }}">
+
+
+
+                {%- if form.errors -%}
+                  <small class="newsletter-form__message form__message" id="Newsletter-error--{{ section.id }}">{% render 'icon-error' %}{{ form.errors.translated_fields['email'] | capitalize }} {{ form.errors.messages['email'] }}</small>
+                {%- endif -%}
+
+              {%- if form.posted_successfully? -%}
+                SUCCESS====
+
+               {%- endif -%}
+
+
+            {% endform %}
         </div>
       </div>
     </div>
