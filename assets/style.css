@@ -483,6 +483,9 @@ select.form-control {border-color: #333;}
 .cart-table-body {border-top: 1px solid #ddd; }
 .cart-table-body .cart-item {display: flex; flex-wrap: wrap; align-items: center;}
 .cart-table-body .cart-item>div:nth-child(2) {display: flex; flex-wrap: wrap;}
+@media (min-width:992px) {
+.cart-table-body .cart-item>div:nth-child(2) {flex-wrap: nowrap;}
+}
 .cart-table-body .cart-item>div:nth-child(2)>div:last-child {margin-left: 15px;}
 .cart-table-body .cart-item img {max-width: 120px;}
 .cart-table-body .prod-category {font-family: 'STIX Two Text', serif; font-size: 0.8em; color: var(--main-color); text-transform: uppercase;}
@@ -534,6 +537,8 @@ form .form__message {max-width: 300px; margin: 20px auto 30px; text-align: cente
 .shopify-challenge__container {padding:4em 0;}
 #RecoverEmail-email-error svg {display: none}
 #RecoverEmail-email-error {font-size: 1.4em; color: var(--main-color); font-weight: 500;}
+input[name="Title"]+.form-check-label, .product-detail-purchase-options .form-check>.label {display: none;}
+
 /******************************************************************************************
 + Plugin
 *******************************************************************************************/
@@ -676,10 +681,11 @@ header.shrink .navbar-brand img {max-height: 55px;}
 #gf-tree .noUi-handle {background-color:var(--main-color);}
 #gf-tree .noUi-connect {background-color: #aaa}
 span.spf-product__label.spf-product__label-sale {background-color: var(--sec-color);}
-.h4.spf-product-card__title a {font-size: 0.78em; color: #333; font-weight: 300; margin-top: 3px; display: inline-block;}
+.h4.spf-product-card__title a {font-size: 0.78em; color: #333; font-weight: 300; margin-top: 3px; display: inline-block; min-height: 46px;}
 .spf-product__info {text-align: center !important;}
 .spf-product-card__vendor {display: none !important}
 .spf-product-card__price.money {font-size: 1.3em}
+#gf-products .spf-product-card .spf-product__form a.open-quick-view {display: none !important}
 @media (min-width:992px) {
   #gf-grid {padding-left: 4.5rem !important}
 }
