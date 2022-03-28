@@ -61,6 +61,8 @@
 
                             {%- endfor -%}
                         </div>
+                        {% if product.variants[0].available  %}
+
                         <div class="product-detail-purchase-actions">
                             <div id="field1">
                                 <button type="button" id="sub" class="sub">-</button>
@@ -74,6 +76,8 @@
                             -->
                         </div>
                         <p class="my-3" style="color:#888"><i>Shipping to be added at checkout</i></p>
+                        {% endif %}
+
                     </div>
                 </div>
             </div>
@@ -86,20 +90,24 @@
                     <li class="nav-item" role="presentation">
                         <a class="nav-link active" id="pills-desc-tab" data-toggle="pill" href="#pills-desc" role="tab" aria-controls="pills-desc" aria-selected="true">Description</a>
                     </li>
+                    <!--
                     <li class="nav-item" role="presentation">
                         <a class="nav-link" id="pills-info-tab" data-toggle="pill" href="#pills-info" role="tab" aria-controls="pills-info" aria-selected="false">Additional Information</a>
                     </li>
+                    -->
                     <li class="nav-item" role="presentation">
                         <a class="nav-link" id="pills-review-tab" data-toggle="pill" href="#pills-review" role="tab" aria-controls="pills-review" aria-selected="false">Reviews</a>
                     </li>
                 </ul>
                 <div class="tab-content" id="pills-tabContent">
                     <div class="tab-pane fade show active" id="pills-desc" role="tabpanel" aria-labelledby="pills-desc-tab">
-                        {{ product.metafields.my_fields.description }}
+                        {{ product.description }}
                     </div>
+                    <!--
                     <div class="tab-pane fade" id="pills-info" role="tabpanel" aria-labelledby="pills-info-tab">
                         {{ product.metafields.my_fields.additional_information }}
                     </div>
+                    -->
                     <div class="tab-pane fade" id="pills-review" role="tabpanel" aria-labelledby="pills-review-tab">
 
 
@@ -260,6 +268,7 @@
     });
 
     var product = {{ product | json }}
+    console.log(product)
     var variants = {{ product.variants | json }}
 
         function contains(arr, items) {
@@ -303,11 +312,9 @@
             data: JSON.stringify(req),
             datatype: "json",
             success:function(data){
-                reload_header();
-                alert("success!");
+                location.href = '/cart'
             },
             error : function (res) {
-
                 let data = JSON.parse(res.responseText)
                 console.log(data)
                 alert(data.description)

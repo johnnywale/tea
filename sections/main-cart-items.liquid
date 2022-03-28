@@ -4,6 +4,8 @@
         <h2>{{ 'sections.cart.title' | t }}</h2>
     </div>
 </section>
+{%- if cart != empty -%}
+
 <section class="subpage pb-0">
     <figure class="subsection">
         <div class="container">
@@ -115,7 +117,7 @@ $(".btn-checkout").on("click", function(){
 $("#inlineCheckbox1").change(function(){
     var agreed = $(this).is(':checked');
     console.log("agreeTAC value changed and is ", agreed);
-    if(agreed === true) { 
+    if(agreed === true) {
        $('.release').show();
     $('.pre-release').hide();
     }
@@ -133,6 +135,9 @@ $("#inlineCheckbox1").change(function(){
             style="background-image: url(images/bg-footer-parallax-1.jpg);"></figure>
 </section>
 
+{% else %}
+    empty card
+{%- endif -%}
 <script>
 
 
