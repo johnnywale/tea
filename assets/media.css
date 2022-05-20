@@ -52,6 +52,7 @@ header.navbar {height: auto; border:none;}
 #hc-nav-1 .nav-item-wrapper>a:hover {color: var(--main-color)}
 .hc-offcanvas-nav:not(.touch-device) li:not(.nav-item-custom) a:not([disabled]):hover {background-color: transparent; }
 .shrink .hc-nav-trigger span, .shrink .hc-nav-trigger span::before, .shrink .hc-nav-trigger span::after {background-color: #333}
+.gf-block-title h3 {font-size: 1.25em; line-height: 1.3}
 }
 
 /******************************************************************************************

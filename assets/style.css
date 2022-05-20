@@ -657,14 +657,14 @@ header.shrink .navbar-brand img {max-height: 55px;}
 #GloboMobileMenu.gm-menu {background-color: #fff !important;}
 #GloboMobileMenu.gm-menu .gm-item.gm-level-0 > .gm-target {background-color: #fff !important}
 #GloboMobileMenu.gm-menu .gm-item.gm-level-0 > .gm-target > .gm-text, #GloboMobileMenu.gm-menu .gm-item.gm-level-0 > .gm-target > .gm-retractor {color: #333 !important}
-#GloboMobileMenu {padding-top: 48px;}
+
 #GloboMobileMenu.gm-menu .gm-submenu.gm-mega {box-shadow: none;}
 #GloboMobileMenu.gm-menu.gm-mobile-bordered.gm-menu-mobile > .gm-level-0 + .gm-level-0:not(.searchItem) {border-color: #ddd !important}
 #GloboMobileMenu.gm-menu .gm-item.gm-level-0.gm-active > .gm-target {background-color: var(--main-color) !important; }
 #GloboMobileMenu.gm-menu .gm-item.gm-level-0.gm-active > .gm-target>span {color: #fff !important}
 
-
 @media (min-width:992px) {
+  #GloboMobileMenu {padding-top: 48px;}
   header .container {flex-direction: row}
   #shopify-section-header {order:2; display: flex;}
   #GloboMobileMenu, .header-topbar ul li:last-child {display: none;}
