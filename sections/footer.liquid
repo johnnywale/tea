@@ -1,6 +1,9 @@
 {% comment %}theme-check-disable UndefinedObject{% endcomment %}
 
 <!-- end section -->
+<style>
+#contact_form .input-group-append .form__message {max-width: 140px; margin: 10px auto 30px; text-align: center; position: absolute; display: flex; flex-wrap: nowrap; bottom: -53px; right: 0; white-space: pre; color: red;}
+</style>
 <section class="mainsec-subscribe pt-0">
   <div class="container">
     <div class="section-body">
@@ -16,7 +19,7 @@
               <input type="email" class="form-control" name="contact[email]" placeholder="Email Address" aria-label="Email Address" aria-describedby="button-addon2">
               <div class="input-group-append">
 
-                <button type="submit" class="newsletter-form__button field__button" name="commit" id="Subscribe" aria-label="{{ 'newsletter.button_label' | t }}">
+                <button type="submit" value="Submit" class="newsletter-form__button field__button" name="commit" id="Subscribe" aria-label="{{ 'newsletter.button_label' | t }}">Submit</button>
 
 
 
