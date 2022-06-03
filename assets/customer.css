@@ -1,3 +1,5 @@
+header.navbar {display: none;}
+
 .customer:not(.account):not(.order) {
   margin: 6rem auto 9rem;
   max-width: 33.4rem;
@@ -60,7 +62,7 @@
   border-bottom: 0.01rem solid rgba(var(--color-foreground), 0.08);
   box-shadow: none;
   width: 100%;
-  font-size: 1.6rem;
+  font-size: 1rem;
   position: relative;
 }
 
@@ -92,7 +94,7 @@
 
 @media screen and (min-width: 750px) {
   .customer td {
-    padding-right: 2.2rem;
+    padding-right: 1.2rem;
   }
 }
 
@@ -104,13 +106,13 @@
 .customer td:empty {
   display: initial;
 }
-
+/**
 .customer thead th {
   font-size: 1.2rem;
   letter-spacing: 0.07rem;
   text-transform: uppercase;
 }
-
+**/
 .customer tbody td:first-of-type {
   padding-top: 4rem;
 }
@@ -120,18 +122,18 @@
   .customer td:first-of-type {
     text-align: left;
     padding-left: 0;
-    padding-right: 2.2rem;
+    padding-right: 1.2rem;
   }
 
   .customer thead th,
   .customer tbody td {
-    padding-top: 2.4rem;
-    padding-bottom: 2.4rem;
+    padding-top: 1.4rem;
+    padding-bottom: 1.4rem;
   }
 
   .customer th:first-of-type,
   .customer td:first-of-type {
-    padding-left: 2.2rem;
+    padding-left: 1.2rem;
   }
 
   .customer tbody td {
@@ -139,7 +141,7 @@
   }
 
   .customer tbody td:first-of-type {
-    padding-top: 2.4rem;
+    padding-top: 1.4rem;
   }
 }
 
@@ -171,8 +173,8 @@
 
 .customer tfoot td:first-of-type,
 .customer tfoot td {
-  padding-top: 0.6rem;
-  padding-bottom: 0.6rem;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
 }
 
 .customer tfoot td:first-of-type {
@@ -236,7 +238,7 @@
   .customer td::before {
     color: rgba(var(--color-foreground), 0.75);
     content: attr(data-label);
-    font-size: 1.4rem;
+    font-size: 1.1rem;
     padding-right: 2rem;
     text-transform: uppercase;
     flex-grow: 1;
@@ -436,12 +438,15 @@
     padding-right: 3.2rem;
   }
 }
-
+/**
 :is(.account, .order) p {
   margin: 0 0 2rem;
   font-size: 1.6rem;
 }
-
+**/
+:is(.account, .order) p+p:not(:last-child) {
+  margin-bottom: 0;
+}
 :is(.account, .order) h1 {
   margin-bottom: 1rem;
 }
@@ -501,13 +506,16 @@
   .order td:nth-last-child(-n + 3) {
     text-align: right;
   }
+  .order tfoot tr:first-of-type {border-top: 1px solid #ddd}
+  .customer thead tr {border-bottom: 1px solid #ddd;}
 }
 
 .order tfoot tr:last-of-type td,
 .order tfoot tr:last-of-type th {
-  font-size: 2.2rem;
-  padding-top: 1.5rem;
+  font-size: 1.2rem;
+  padding-top: 0.5rem;
   padding-bottom: 4rem;
+  
 }
 
 @media screen and (min-width: 750px) {
@@ -518,7 +526,7 @@
 }
 
 .order tfoot tr:last-of-type td:before {
-  font-size: 2.2rem;
+  font-size: 1.2rem;
 }
 
 .order table p,
@@ -526,12 +534,12 @@
 .order > div:nth-of-type(2) > div:last-of-type h2 + p {
   margin-bottom: 0;
 }
-
+/**
 .order > div:nth-of-type(2) > div:first-of-type h2 ~ p {
   margin-bottom: 0;
   font-size: 1.4rem;
 }
-
+**/
 .order > div:nth-of-type(2) > div:first-of-type h2 ~ p:last-of-type {
   margin-bottom: 3rem;
 }
